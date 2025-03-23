@@ -1,4 +1,4 @@
-package tp1.ejercicio2;
+package ejercicio2;
 import java.util.Scanner;
 public class Main {
     private static int [] vector;
