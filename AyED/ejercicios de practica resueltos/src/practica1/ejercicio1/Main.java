@@ -1,4 +1,4 @@
-package ejercicio1;
+package practica1.ejercicio1;
 
 public class Main {
     public static void metodo1 (int a, int b){
