@@ -1,0 +1,9 @@
+1 599.99 Samsung
+10 5 Pantalla_AMOLED_6.5"
+Galaxy_S21
+2 799.99 Apple
+15 3 Chip_A14_Bionic
+iPhone_12
+3 399.99 Motorola
+8 2 Android_11
+Moto_G9

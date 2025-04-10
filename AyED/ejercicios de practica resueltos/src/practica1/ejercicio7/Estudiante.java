@@ -16,10 +16,6 @@ public class Estudiante {
         this.direccion = direccion;
     }
 
-
-
-
-
     public String tusDatos (){
         return this.getApellido()
                 + this.getNombre() + "/n"
