@@ -1,4 +1,4 @@
-program ej4p1;
+program ej1p3;
 type
 	empleado = record
 		numero: integer;
@@ -141,7 +141,37 @@ begin
     writeln('Archivo de texto del contenido del archivo exportado correctamente');
     close(archivoLogico);
     close(archivoDeTexto);
-end; 
+end;
+
+procedure bajaP3(var archivoLogico:archivo);
+var
+	empregUlt:empleado;
+	num,ult,pos:integer;
+	encontre:boolean;
+begin
+	writeln('ingrese el numero del empleado a borrar: ');
+	readln(num);
+	encontre = false;
+	reset(archivoLogico);
+	while not eof (archivoLogico) and (emp.numero <> num) do begin
+		read(archivoLogico,emp);
+		if (num = emp.numero)then begin
+			encontre = true
+			pos:= filePos(archivo)-1;
+		end;
+	end;
+	if (encontre) then
+		ult:= fileSize(archivoLogico)-1;
+		seek(archivo,ult);
+		read(archivo,regUlt);
+		seek(archivo,pos);
+		write(archivo,regUlt);
+		seek(archivo,ult);
+		truncate(archivo);
+		writeln('empleado borrado');
+	end;
+	close(archivoLogico);
+end;
 var
 	nombreArchivo:String;
 	archivoLogico:archivo;
@@ -163,4 +193,5 @@ begin
 	punto4incisoA(archivoLogico);
 	punto4incisoB(archivoLogico);
 	punto4incisoC(archivoLogico);
+	bajaP3(archivoLogico);
 end.

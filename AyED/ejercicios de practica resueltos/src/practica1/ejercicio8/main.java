@@ -2,7 +2,7 @@ package practica1.ejercicio8;
 
 public class main {
 	public static void main(String[] args) {
-        Queue cola = new Queue();
+        Queue <Integer> cola = new Queue();
 
         System.out.println("¿Cola vacía? " + cola.isEmpty()); // true
 
