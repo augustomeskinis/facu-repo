@@ -1,0 +1,30 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Usuario {
+	private String nombre;
+	private List <Entrada> entradas;
+	
+	public Usuario (String nombre) {
+		this.nombre = nombre;
+		this.entradas = new ArrayList<Entrada>();
+	}
+	
+	public Entrada comprarEntrada (boolean reembolso, Evento evento) {
+		Entrada entrada = new Entrada (reembolso, evento) ;
+		this.entradas.add(entrada);
+		return entrada;
+	}
+	
+	public double calcularMontoTotal (LocalDate fecha1, LocalDate fecha2) {
+		DateLapse dateLapse = new DateLapse (fecha1,fecha2);
+		return this.entradas.stream().filter(entrada -> entrada.estaIntervalo(dateLapse))
+		.mapToDouble(entrada -> entrada.precioEntrada()).sum();
+	}
+	
+	
+	
+}

@@ -1,0 +1,104 @@
+programa ej4p3
+procesos
+  proceso recolectarFlores 
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+areas
+  esquinas: AreaC (10,10,11,11)
+  iniciojefe: AreaP (1,1,1,1)
+  inicio1: AreaP (9,9,9,9)
+  inicio2: AreaP (9,10,9,10)
+  inicio3: AreaP (9,11,9,11)
+  inicio4: AreaP (9,12,9,12)
+robots
+  robot tipo1
+  variables
+    av, ca, quienSoy: numero
+    hay: boolean
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    RecibirMensaje (quienSoy, robotjefe)
+    BloquearEsquina (10,10)
+    Pos (10,10)
+    si (HayFlorEnLaEsquina)
+      hay:= V
+      tomarFlor
+      Pos (av,ca)
+      LiberarEsquina (10,10)
+      BloquearEsquina (11,11)
+      Pos (11,11)
+      depositarFlor
+      Pos(av,ca)
+      LiberarEsquina (11,11)
+    mientras (hay = V)
+      BloquearEsquina (10,10)
+      Pos (10,10)
+      si (HayFlorEnLaEsquina)
+        tomarFlor
+        Pos (av,ca)
+        LiberarEsquina (10,10)
+        BloquearEsquina (11,11)
+        Pos (11,11)
+        depositarFlor 
+        Pos (av,ca) 
+        LiberarEsquina (11,11)
+      sino 
+        hay:= F
+        Pos (av,ca)
+        LiberarEsquina (10,10)
+    EnviarMensaje (quienSoy,robotjefe)
+  fin
+  robot tipo2
+  variables
+    ultimo: numero
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    EnviarMensaje (3, robot3)
+    EnviarMensaje (4, robot4)
+    repetir 4
+      RecibirMensaje (ultimo, *)
+    Informar (ultimo)
+    Pos (11,11)
+    recolectarFlores
+  fin
+variables 
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robot4: tipo1
+  robotjefe: tipo2
+comenzar
+  AsignarArea (robot1, esquinas) 
+  AsignarArea (robot1, inicio1)
+  AsignarArea (robot2, esquinas)
+  AsignarArea (robot2, inicio2)
+  AsignarArea (robot3, esquinas)
+  AsignarArea (robot3,inicio3)
+  AsignarArea (robot4,esquinas)
+  AsignarArea (robot4,inicio4)
+  AsignarArea (robotjefe,esquinas)
+  AsignarArea (robotjefe,iniciojefe)
+  Iniciar (robotjefe, 1,1)
+  Iniciar (robot1, 9,9)
+  Iniciar (robot2, 9,10)
+  Iniciar (robot3, 9,11)
+  Iniciar (robot4, 9,12)
+fin
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

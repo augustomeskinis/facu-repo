@@ -66,7 +66,8 @@ public class Ejercicio10 {
             }
         }
         if (nodo.getData().equals(1)) {
-            caminoActual.remove(caminoActual.size() - 1);}
+            caminoActual.remove(caminoActual.size() - 1);
+        }
     }
 
     public static void main (String [] args){

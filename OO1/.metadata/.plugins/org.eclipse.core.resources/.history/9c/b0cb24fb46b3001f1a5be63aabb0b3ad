@@ -1,0 +1,9 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class SeisCuotas implements FormaDePago {
+	
+	public double precioFinal (double precio) {
+		double veinte = precio * 0.20;
+		return precio + 
+	}
+}

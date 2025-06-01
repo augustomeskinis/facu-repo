@@ -1,0 +1,83 @@
+programa ej5p5
+procesos
+  proceso irYvolver(E av: numero; E ca: numero)
+  comenzar
+    BloquearEsquina(100,1)
+    Pos(100,1)
+    tomarPapel
+    Pos(av,ca)
+    LiberarEsquina(100,1)
+    depositarPapel
+  fin
+areas
+  ciudad:AreaC(1,1,100,100)
+robots
+  robot tipo1
+  variables
+    quienSoy, caInicial, avInicial, papeles: numero
+    voy: boolean
+  comenzar
+    RecibirMensaje(quienSoy,robotjefe)
+    caInicial:= PosCa
+    avInicial:= PosAv
+    repetir 4
+      EnviarMensaje(quienSoy,robotjefe)
+      RecibirMensaje(voy,robotjefe)
+      si(voy)
+        RecibirMensaje(papeles,robotjefe)
+        repetir papeles
+          irYvolver(avInicial,caInicial)
+  fin
+  robot tipo2
+  variables
+    quienEs, papeles, avInicial, caInicial: numero
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    EnviarMensaje(3,robot3)
+    avInicial:= PosAv
+    caInicial:= PosCa
+    repetir 4
+      Random(papeles,1,5)
+      BloquearEsquina(100,1)
+      Pos(100,1)
+      repetir papeles
+        depositarPapel
+      Pos(avInicial,caInicial)
+      LiberarEsquina(100,1)
+      RecibirMensaje(quienEs,*)
+      si(quienEs=1)
+        EnviarMensaje(V,robot1)
+        EnviarMensaje(papeles,robot1)
+        EnviarMensaje(F,robot2)
+        EnviarMensaje(F,robot3)
+      sino
+        EnviarMensaje(F,robot1)
+        si(quienEs=2)
+          EnviarMensaje(V,robot2)
+          EnviarMensaje(papeles,robot2)
+          EnviarMensaje(F,robot3)
+        sino
+          EnviarMensaje(V,robot3)
+          EnviarMensaje(papeles,robot3)
+          EnviarMensaje(F,robot2)
+  fin
+variables
+  robot1:tipo1
+  robot2:tipo1
+  robot3:tipo1
+  robotjefe:tipo2
+comenzar
+  AsignarArea(robot1,ciudad)
+  AsignarArea(robot2,ciudad)
+  AsignarArea(robot3,ciudad)
+  AsignarArea(robotjefe,ciudad)
+  Iniciar(robot1,10,1)
+  Iniciar(robot2,11,1)
+  Iniciar(robot3,12,1)
+  Iniciar(robotjefe,13,1)
+fin
+    
+    

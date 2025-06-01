@@ -1,0 +1,232 @@
+programa P3E6
+procesos
+  proceso juntarFlores 
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarPapeles 
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso limpiarEsquina 
+  comenzar
+    juntarFlores
+    juntarPapeles
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot tipo2
+  variables
+    quienSoy,auxCa, auxAv, orientador: numero
+  comenzar
+    orientador:= 0
+    repetir 4
+      orientador:= orientador + 1
+      si (orientador = 1)
+        repetir 9
+          auxCa:= PosCa
+          si ((auxCa+1) = 8)
+            BloquearEsquina(PosAv,8)
+            mover
+            limpiarEsquina
+            mover
+            LiberarEsquina(PosAv,8)
+          sino
+            limpiarEsquina
+            mover
+      sino
+        si (orientador=2)
+          repetir 9
+            auxAv:= PosAv
+            si ((auxAv+1)=9)
+              BloquearEsquina(9,PosCa)
+              mover
+              limpiarEsquina
+              mover
+              LiberarEsquina(9,PosCa)
+            sino
+              limpiarEsquina
+              mover
+        sino
+          si(orientador=3)
+            repetir 9
+              auxCa:= PosCa
+              si((auxCa+1)=9)
+                BloquearEsquina(PosAv,9)
+                mover
+                limpiarEsquina
+                mover
+                LiberarEsquina(PosAv,9)
+              sino
+                limpiarEsquina
+                mover
+          sino
+            repetir 9
+              auxAv:= PosAv
+              si((auxAv+1)=8)
+                BloquearEsquina(8,PosCa)
+                mover
+                limpiarEsquina
+                mover
+                LiberarEsquina(8,PosCa)
+              sino
+                limpiarEsquina
+                mover
+      derecha
+    RecibirMensaje(quienSoy,robotjefe)
+    EnviarMensaje(quienSoy,robotjefe)
+    RecibirMensaje(auxCa,robotjefe)
+    Pos(1,auxCa)
+    derecha
+    mientras ((HayPapelEnLaBolsa) & (HayFlorEnLaBolsa))
+      depositarPapel
+      depositarFlor
+      mover
+  fin
+  robot tipo1
+  variables
+    quienSoy, auxAv, auxCa, orientador: numero
+  comenzar
+    orientador:= 0
+    repetir 4
+      orientador:= orientador + 1
+      si ((orientador=1) | (orientador=4))
+        repetir 6
+          juntarPapeles
+          mover
+      sino
+        si (orientador = 2)
+          repetir 5
+            auxAv:= PosAv
+            si ((auxAv+1)=5)
+              BloquearEsquina(5,PosCa)
+              mover
+              juntarPapeles
+              mover
+              LiberarEsquina(5,PosCa)
+            sino
+              juntarPapeles
+              mover
+        sino
+          repetir 5
+            auxCa:= PosCa
+            si ((auxCa+1=5))
+              BloquearEsquina(PosAv,5)
+              mover
+              juntarPapeles
+              mover
+              LiberarEsquina(PosAv,5)
+            sino
+              juntarPapeles
+              mover
+      derecha          
+    RecibirMensaje(quienSoy,robotjefe)
+    EnviarMensaje(quienSoy,robotjefe)
+    RecibirMensaje(auxCa,robotjefe)
+    Pos(1,auxCa)
+    derecha
+    mientras (HayPapelEnLaBolsa)
+      depositarPapel
+      mover
+  fin
+  robot tipo3
+  variables
+    quienSoy, auxAv, auxCa, orientador: numero
+  comenzar
+    orientador:= 0
+    repetir 4
+      orientador:= orientador + 1
+      si ((orientador=2)|(orientador=3))
+        repetir 7
+          juntarFlores
+          mover
+      sino
+        si(orientador=1)
+          repetir 6
+            auxCa:= PosCa
+            si ((auxCa+1)=15)
+              BloquearEsquina(PosAv,15)
+              mover
+              juntarFlores
+              mover
+              LiberarEsquina(PosAv,15)
+            sino
+              juntarFlores
+              mover
+        sino
+          si (orientador=4)
+            repetir 6
+              auxAv:= PosAv
+              si((auxAv+1)=15)
+                BloquearEsquina(15,PosCa)
+                mover
+                juntarFlores
+                mover
+                LiberarEsquina(15,PosCa)
+              sino
+                juntarFlores
+                mover
+      derecha
+    RecibirMensaje(quienSoy,robotjefe)
+    EnviarMensaje(quienSoy,robotjefe)
+    RecibirMensaje(auxCa,robotjefe)
+    Pos(1,auxCa)
+    derecha
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+      mover
+  fin
+  robot tipo4
+  variables
+    quienEs, cuandoTermino: numero
+  comenzar
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    EnviarMensaje(3,robot3)
+    repetir 3
+      cuandoTermino:= cuandoTermino+1
+      RecibirMensaje(quienEs,*)
+      si (quienEs = 1)
+        si (cuandoTermino=1)
+          EnviarMensaje(20,robot1)
+        sino
+          si(cuandoTermino=2)
+            EnviarMensaje(21,robot1)
+          sino
+            EnviarMensaje(22,robot1)
+      sino
+        si(quienEs = 2)
+          si (cuandoTermino=1)
+            EnviarMensaje(20,robot2)
+          sino
+            si(cuandoTermino=2)
+              EnviarMensaje(21,robot2)
+            sino
+              EnviarMensaje(22,robot2)
+        sino
+          si(cuandoTermino=1)
+            EnviarMensaje(20,robot3)
+          sino
+            si(cuandoTermino=2)
+              EnviarMensaje(21,robot3)
+            sino
+              EnviarMensaje(22,robot3)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo2
+  robot3: tipo3
+  robotjefe: tipo4
+comenzar
+  AsignarArea(robot2,ciudad)
+  AsignarArea(robot1,ciudad)
+  AsignarArea(robot3,ciudad)
+  AsignarArea(robotjefe,ciudad)
+  Iniciar(robot1,2,2)
+  Iniciar(robot2,5,5)
+  Iniciar(robot3,9,9)
+  Iniciar(robotjefe,100,100)
+fin

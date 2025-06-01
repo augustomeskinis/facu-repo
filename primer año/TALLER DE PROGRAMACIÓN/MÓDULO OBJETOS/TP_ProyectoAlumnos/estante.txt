@@ -1,0 +1,54 @@
+package tema3;
+
+/**
+ *
+ * @author Alumno
+ */
+public class Estante {
+    private int dimL = 0;
+    private final int dimF = 20;
+    private Libro[] libros;
+
+    public Estante(Libro[] libros) {
+        this.libros = libros;
+    }
+
+    public void nuevoEstante (Estante est) {
+        libros = new Libro[dimF];
+    }
+    
+    public boolean addLibro(Libro libro) {
+        if (dimL<dimF) {
+            libros[dimL] = libro;
+            dimL++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public int getCantidadLibros() {
+        return dimL;
+    }
+    
+    public boolean getEstaLleno(){
+        return dimL==dimF;
+    }
+    public void test(){
+        
+    }
+    public Libro getLibro(String titulo){
+        int i = 0;
+        boolean encontre = false;
+        while ((i<dimL) && (encontre==false)) {
+            if (libros[i].getTitulo().equals(titulo)) {
+                encontre = true;
+            } else {
+            i++;
+            }
+        }
+        if (encontre){
+            return libros[i];
+        } else {
+                return null;
+    }
+    }

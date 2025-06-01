@@ -1,0 +1,9 @@
+PASCAL: 
+en el programa final2024. como hago el modulo del incisoB lo mas eficiente posible?
+	
+hay que aprenderse los codigos como el de insertar ordenado?
+
+consultar el probando. Es real? y si es asi como se resuelve?
+
+JAVA:
+consultar el parcial Z. El this es necesario? y lo demas

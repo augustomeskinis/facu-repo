@@ -1,0 +1,43 @@
+programa ej1p1
+procesos
+  
+  proceso JuntarFlores (ES f: numero; ES esq: numero)
+  comenzar
+    si (HayFlorEnLaEsquina)
+      mientras (HayFlorEnLaEsquina) 
+        tomarFlor
+        f:= f + 1
+    sino
+      esq:= esq + 1
+  fin
+  proceso recorrerAv
+  variables
+    f,esq: numero
+  comenzar
+    f:= 0
+    esq:= 0
+    mientras (PosCa < 99)
+      JuntarFlores (f,esq)
+      mover
+    Informar (f)
+    Informar (esq)
+  fin    
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot tipo1
+  comenzar 
+    recorrerAv
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+comenzar
+  AsignarArea (robot1, ciudad)
+  AsignarArea (robot2, ciudad)
+  AsignarArea (robot3, ciudad)
+  Iniciar (robot1, 1,1)
+  Iniciar (robot2, 3,1)
+  Iniciar (robot3, 5,1)
+fin

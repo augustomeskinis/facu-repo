@@ -1,0 +1,23 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cliente extends Usuario{
+	private List <Pedido> pedidos ;
+	
+	
+	
+	public Cliente (String nombre, String direccion) {
+		super(nombre,direccion);
+		this.pedidos = new ArrayList <Pedido> ();
+	}
+	
+	public void crearPedido (FormaDePago formaDePago, 
+					FormaDeEnvio formaDeEnvio, Producto producto, int cant) {
+		if (producto.hayDisponibles(cant)) {
+			Pedido P = new Pedido (formaDePago,formaDeEnvio);
+			this.pedidos.add(P);
+		}
+	}
+}

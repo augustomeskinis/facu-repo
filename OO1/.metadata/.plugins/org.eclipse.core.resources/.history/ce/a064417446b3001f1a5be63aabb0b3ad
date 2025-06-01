@@ -1,0 +1,11 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class Pedido {
+	private FormaDePago formaDePago;
+	private FormaDeEnvio formaDeEnvio;
+	
+	public Pedido (FormaDePago formaDePago, FormaDeEnvio formaDeEnvio) {
+		this.formaDeEnvio= formaDeEnvio;
+		this.formaDePago = formaDePago;
+	}
+}

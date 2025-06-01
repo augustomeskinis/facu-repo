@@ -1,0 +1,13 @@
+el equals compara el contenido de los objetos, NO las direcciones de memoria
+
+obviamente el equals se espera usarlo para comparar contenidos de objetos de la misma clase
+
+para comparar strings tambien usar el equals
+
+una clase no devuelve su matriz
+
+olvidarse de devolver la representacion interna de un objeto
+
+no recorrer una estructura entera si no es necesario, osea no repetir el error de imperativo
+
+

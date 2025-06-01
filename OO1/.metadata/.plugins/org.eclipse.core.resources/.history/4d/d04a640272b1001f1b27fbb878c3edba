@@ -1,0 +1,10 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+public class Sede {
+	private String nombre;
+	private double precioEstadia;
+	private int diasEstadia;
+	
+	
+	
+}

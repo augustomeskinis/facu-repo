@@ -1,0 +1,7 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.util.List;
+
+public class EventoPresencial extends Evento {
+	private List <Sede> sedes;
+}

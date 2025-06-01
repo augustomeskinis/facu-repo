@@ -1,0 +1,18 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Vendedor extends Usuario {
+	private List <Producto> productos;
+	
+	
+	public Vendedor (String nombre, String direccion) {
+		super (nombre, direccion);
+		this.productos = new ArrayList <Producto>();
+	}
+	
+	public void agregarProducto (Producto P) {
+		this.productos.add(P);
+	}
+}

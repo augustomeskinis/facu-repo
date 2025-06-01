@@ -1,0 +1,185 @@
+program ej1practica4;
+type
+	venta = record
+		codigo_venta: integer;
+		codigo_producto: integer;
+		uv: integer;
+		precio: integer;
+	end;
+	
+	producto = record
+		codigo: integer;
+		total_uv: integer;
+		monto: integer;
+	end;
+	
+	arbol = ^nodo;
+	
+	nodo = record
+		dato: producto;
+		hi: arbol;
+		hd: arbol;
+	end;
+
+procedure leer_venta (var v: venta);
+begin
+	writeln('ingrese un codigo de venta: ');
+	readln(v.codigo_venta);
+	writeln('ingrese un codigo de producto: ');
+	readln(v.codigo_producto);
+	writeln('ingrese la cant de uv: ');
+	readln(v.uv);
+	writeln('ingrese el precio: ');
+	readln(v.precio);
+end;
+
+procedure agregar_arbol(var a: arbol; v: venta);
+begin
+	if (a = nil) then begin
+		new(a);
+		a^.dato.codigo:= v.codigo_producto;
+		a^.dato.total_uv:= v.uv;
+		a^.dato.monto:= v.precio;
+		a^.hi:= nil;
+		a^.hd:= nil;
+	end
+	else begin
+		if (a^.dato.codigo = v.codigo_producto) then begin
+			a^.dato.total_uv:= a^.dato.total_uv + v.uv;
+			a^.dato.monto:= a^.dato.monto + v.precio;
+		end
+		else begin
+			if (a^.dato.codigo < v.codigo_producto) then
+				agregar_arbol(a^.hi,v)
+			else
+				agregar_arbol(a^.hd,v);
+		end;
+	end;
+end;
+
+procedure incisoA (var a: arbol);
+var
+	v: venta;
+begin
+	leer_venta(v);
+	while (v.codigo_venta <> -1) do begin
+		agregar_arbol(a,v);
+		leer_venta(v);
+	end;
+end;
+
+procedure imprimir_arbol(p:producto);
+begin
+	writeln('codigo de producto: ', p.codigo);
+	writeln('total de unidades vendidas: ', p.total_uv);
+	writeln('monto total: ', p.monto);
+end;
+
+procedure incisoB(a: arbol);
+begin
+	if (a<>nil) then begin
+		incisoB(a^.hi);
+		imprimir_arbol(a^.dato);
+		incisoB(a^.hd);
+	end;
+end;
+
+procedure incisoC(a:arbol; var max_cod: integer; var max_uv: integer);
+begin
+	if (a<>nil)then begin
+		incisoC(a^.hi,max_cod,max_uv);
+		if (a^.dato.total_uv >= max_uv) then begin
+			max_uv:= a^.dato.total_uv;
+			max_cod:= a^.dato.codigo;
+		end;
+		incisoC(a^.hd,max_cod,max_uv);
+	end;
+end;
+
+procedure cantCodMen(a: arbol; min: integer; var cont: integer);
+begin
+    if (a <> nil) then
+    begin
+        if (a^.d.cod > min) then
+            cantCodMen(a^.hi, min, cont);
+        else
+        begin
+            cont:= cont + 1;
+            cantCodMen(a^.hi, min, cont);
+            cantCodMen(a^.hi, min, cont);
+        end;
+    end;
+end;
+
+procedure incisoC(a:arbol);
+var
+	min, cont: integer;
+begin
+	min:=-1;cont:=0;
+	cantCodMen(a,min,cont);
+	writeln(cont);
+end;
+
+
+function monto_total (a:arbol; cod1: integer; cod2: integer): integer;
+begin
+	if (a=nil) then 
+		monto_total:= 0
+	else begin
+		if (a^.hd <> nil) then begin
+			if (a^.dato.codigo > cod1) and (a^.dato.codigo < cod2) then
+				monto_total:= a^.dato.monto + monto_total (a^.hd,cod1,cod2)
+			else begin
+				if (a^.dato.codigo <= cod1) then
+					monto_total:= monto_total(a^.hi,cod1,cod2)
+				else begin
+					if (a^.dato.codigo > cod1) then
+						monto_total:= monto_total(a^.hi,cod1,cod2)
+				end;
+			end;
+		end;
+	end;
+end;
+procedure incisoD(a: arbol);
+var
+	cod1, cod2: integer;
+begin
+	writeln('ingrese dos codigos, primero el menor despues el mayor y devolvere el monto entre esos dos codigos: ');
+	writeln('ingrese 1er codigo: ');
+	readln(cod1);
+	writeln('ingrese 2do codigo: ');
+	readln(cod2);
+	writeln('MONTO TOTAL: ',monto_total(a,cod1,cod2));
+end;
+
+var
+	abb: arbol;
+	max_cod, max_uv: integer;
+begin
+	abb:= nil;
+	max_cod:= 0; max_uv:= -1;
+	incisoA(abb);
+	incisoB(abb);
+	incisoC(abb,max_cod,max_uv);
+	writeln('el codigo de producto con mayor cantidad de uv es: ', max_cod);
+	incisoD(abb);
+end.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

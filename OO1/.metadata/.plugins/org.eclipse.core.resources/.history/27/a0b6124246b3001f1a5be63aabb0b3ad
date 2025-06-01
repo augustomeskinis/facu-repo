@@ -1,0 +1,24 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class Producto {
+	private String nombre;
+	private String categoria;
+	private double precio;
+	private int unidades;
+	
+	public Producto (String nombre, String categoria, double precio, int unidades) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.precio = precio;
+		this.unidades = unidades;
+	}
+	
+	public boolean hayDisponibles (int cant) {
+		if (this.unidades - cant >= 0) {
+			this.unidades -= cant;
+			return true;
+		}
+		return false;
+	}
+	
+}

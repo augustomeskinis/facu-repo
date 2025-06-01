@@ -1,0 +1,48 @@
+class Empleado {
+-nombre:String;
+-apellido:String;
+-CUIL: integer;
+-fechaNacimiento: LocalDate;
+-tieneHijos: boolean;
+-calcularAntiguedad () : real;
+-calcularMontoACobrar () : real;
++nuevoContrato(Contrato contrato);
+-agregarContratoVencido(Contrato contrato);
+}
+
+abstract class Contrato {
+-fechaInicio: LocalDate;
+-fechaFin: LocalDate;
++<<abstract>>calcularSueldoBasico():real;
++esActivo():boolean;
++calcularDuracion(): int;
+}
+
+class ContratoPorHoras extends Contrato{
+-valorHora:real;
+-horasPorMes: integer;
+-fechaFin: LocalDate;
++calcularSueldoBasico():real;
+}
+
+class ContratoDePlanta extends Contrato{
+-sueldoMensual: real;
+-montoPorConyuge: real;
+-montoPorHijos: real;
++calcularSueldoBasico():real;
+}
+
+Empleado --> "0..* contratosVencidos" Contrato
+Empleado ..> "contratoActivo" Contrato 
+
+
+class ReciboDeSueldo {
++getFechaCreacion() :LocalDate;
++getNombreEmpleado():String;
++getApellidoEmpleado():String;
++getCUILEmpleado():String;
++getAntiguedadEmpleado():int;
++getMontoACobrar():real;
+}
+
+Empleado ..> ReciboDeSueldo

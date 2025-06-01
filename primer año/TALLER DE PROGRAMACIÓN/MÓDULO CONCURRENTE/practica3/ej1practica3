@@ -1,0 +1,107 @@
+programa ej1practica3
+procesos
+  proceso juntarFlores
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarPapeles 
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+areas
+  inicio1: AreaP(6,10,6,10)
+  inicio2: AreaP(7,10,7,10)
+  inicio3:AreaP(8,10,8,10)
+  inicio4:AreaP(9,10,9,10)
+  areaF: AreaPC(1,1,5,10)
+  areaP: AreaPC(6,1,10,9)
+  areajefe: AreaP (90,90,90,90)
+  esquina: AreaPC(10,10,10,10)
+robots
+  robot florero
+  variables
+    av, ca, avRandom, caRandom: numero
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    repetir 5
+      RecibirMensaje(avRandom, robotjefe)
+      RecibirMensaje(caRandom, robotjefe)
+      BloquearEsquina(avRandom, caRandom)
+      Pos(avRandom, caRandom)
+      juntarFlores
+      Pos(av,ca)
+      LiberarEsquina(avRandom,caRandom)
+    mientras (HayFlorEnLaBolsa)
+      BloquearEsquina(10,10)
+      depositarFlor
+      Pos(av,ca)
+      LiberarEsquina(10,10)
+  fin
+  robot papelero 
+  variables
+    av, ca, avRandom, caRandom: numero
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    repetir 3
+      RecibirMensaje(avRandom, robotjefe)
+      RecibirMensaje(caRandom, robotjefe)
+      BloquearEsquina(avRandom,caRandom)
+      Pos(avRandom,caRandom)
+      juntarPapeles
+      Pos(av,ca)
+      LiberarEsquina(avRandom,caRandom)
+    mientras (HayPapelEnLaBolsa)
+      BloquearEsquina(10,10)
+      depositarPapel
+      Pos(av,ca)
+      LiberarEsquina(10,10)
+  fin
+  robot jefe
+  variables
+    avRandom, caRandom: numero
+  comenzar
+    repetir 5
+      Random(avRandom,1,5)
+      EnviarMensaje(avRandom,robot1)
+      EnviarMensaje(avRandom,robot2)
+      Random(caRandom,1,10)
+      EnviarMensaje(caRandom,robot1)
+      EnviarMensaje(caRandom,robot2)
+    repetir 3
+      Random(avRandom,6,10)
+      EnviarMensaje(avRandom,robot3)
+      EnviarMensaje(avRandom,robot4)
+      Random(caRandom,1,9)
+      EnviarMensaje(caRandom,robot3)
+      EnviarMensaje(caRandom,robot4)
+  fin
+variables
+  robot1: florero
+  robot2: florero
+  robot3: papelero
+  robot4: papelero
+  robotjefe: jefe
+comenzar
+  AsignarArea(robot1,esquina)
+  AsignarArea(robot2,esquina)
+  AsignarArea(robot3,esquina)
+  AsignarArea(robot4,esquina)
+  AsignarArea(robot1,areaF)
+  AsignarArea(robot1,inicio1)
+  AsignarArea(robot2,inicio2)
+  AsignarArea(robot3,inicio3)
+  AsignarArea(robot4,inicio4)
+  AsignarArea(robot2,areaF)
+  AsignarArea(robot3,areaP)
+  AsignarArea(robot4,areaP)
+  AsignarArea(robotjefe,areajefe)
+  Iniciar(robot1,6,10)
+  Iniciar(robot2,7,10)
+  Iniciar(robot3,8,10)
+  Iniciar(robot4,9,10)
+  Iniciar(robotjefe,90,90)
+fin

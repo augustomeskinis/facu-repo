@@ -1,0 +1,106 @@
+programa ej1p4
+procesos
+  proceso juntarFlores
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+areas
+  ciudad:AreaC(1,1,100,100)
+robots
+  robot tipo1
+  variables
+    ok: boolean
+    x,quienSoy,ca: numero
+  comenzar
+    RecibirMensaje(quienSoy,robotjefe)
+    mientras (PosCa < 99)
+      Random(x,1,4)
+      ca:= PosCa
+      ca:= ca+1
+      EnviarMensaje(quienSoy,robotjefe)
+      EnviarMensaje(x,robotjefe)
+      EnviarMensaje(ca,robotjefe)
+      RecibirMensaje(ok,robotjefe)
+      mover
+      repetir x
+        tomarFlor
+      mientras ((PosCa<99) & (HayFlorEnLaBolsa))
+        depositarFlor
+        si (HayFlorEnLaBolsa)
+          mover
+      si (PosCa=99)
+        EnviarMensaje(V,robotjefe)
+      sino
+        EnviarMensaje(F,robotjefe)
+  fin
+  robot tipo2
+  variables
+    cuantosTerminaron,av,ca,x,quienEs: numero
+    termino: boolean
+  comenzar
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    EnviarMensaje(3,robot3)
+    juntarFlores
+    cuantosTerminaron:=0
+    mientras(cuantosTerminaron<3)
+      RecibirMensaje(quienEs,*)
+      si(quienEs=1)
+        RecibirMensaje(x,robot1)
+        RecibirMensaje(ca,robot1)
+        Pos(1,ca)
+        repetir x
+          depositarFlor
+        Pos(100,100)
+        EnviarMensaje(V,robot1)
+        RecibirMensaje(termino,robot1)
+        si (termino)
+          cuantosTerminaron:=cuantosTerminaron+1
+      sino
+        si(quienEs=2)
+          RecibirMensaje(x,robot2)
+          RecibirMensaje(ca,robot2)
+          Pos(2,ca)
+          repetir x
+            depositarFlor
+          Pos(100,100)
+          EnviarMensaje(V,robot2)
+          RecibirMensaje(termino,robot2)
+          si(termino)
+            cuantosTerminaron:=cuantosTerminaron+1
+        sino
+          RecibirMensaje(x,robot3)
+          RecibirMensaje(ca,robot3)
+          Pos(3,ca)
+          repetir x
+            depositarFlor
+          Pos(100,100)
+          EnviarMensaje(V,robot3)
+          RecibirMensaje(termino,robot3)
+          si(termino)
+            cuantosTerminaron:=cuantosTerminaron+1
+  fin
+variables
+  robot1:tipo1
+  robot2:tipo1
+  robot3:tipo1
+  robotjefe:tipo2
+comenzar
+  AsignarArea(robot1,ciudad)
+  AsignarArea(robot2,ciudad)
+  AsignarArea(robot3,ciudad)
+  AsignarArea(robotjefe,ciudad)
+  Iniciar(robot1,1,1)
+  Iniciar(robot2,2,1)
+  Iniciar(robot3,3,1)
+  Iniciar(robotjefe,100,100)
+fin
+  
+      
+        
+        
+        
+        
+        
+        

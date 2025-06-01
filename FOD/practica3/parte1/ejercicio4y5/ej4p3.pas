@@ -70,7 +70,7 @@ begin
 			f.codigo:= 0
 		else begin
 			f.codigo:= cabecera.codigo;
-			cabecera.codigo:= filePos(ar)-1;
+			cabecera.codigo:= filePos(ar)-1*-1;
 		end;
 		seek(ar,filePos(ar)-1);
 		write(ar,f);

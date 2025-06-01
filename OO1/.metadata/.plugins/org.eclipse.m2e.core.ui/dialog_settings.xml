@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio24-PoolCar"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ZIP\src"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio10-JobScheduler"/>
+			<item value="D:\OO1 pendrive\ejercicio9-CuentaConGanchos"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\Ejercicio6-GenealogiaSalvaje"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio2 - balanzaElectronica"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio3 - presupuesto"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio1- wallpost"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio1"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\Recursos adicionales"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicioDemo"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio2"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\src"/>
+			<item value="C:\Users\Augusto\eclipse-workspace\ejercicio1"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\ejercicio10-JobScheduler"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1"/>
+			<item value="C:\Users\Augusto\OneDrive\Desktop\Augusto facultad\OO1\Ejercicio6-GenealogiaSalvaje"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="defaultLocal"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+			<item value="ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos"/>
+			<item value="ar.edu.unlp.info.oo1.ParcialPrimeraFecha"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio24_PoolCar"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio23_PoolCar"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio21_Bag"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio18_PoliticasDeCancelacion"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio20_LiquidacionDeHaberes"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio19_ServicioDeEnviosDePaquetes"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio17_AlquilerDePropiedades"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio16_FilteredSet"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio15_DistribuidoraElectricaMIO"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio15_DistribuidoraElectrica"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio14_IntervaloDeTiempo"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio13_ClienteDeCorreo"/>
+			<item value="ar.edu.unlp.info.oo1.ejercicio12_VolumenYSuperficieDeSolidos"/>
+		</list>
+		<list key="groupId">
+			<item value="ar.edu.unlp.info.oo1"/>
+		</list>
+		<list key="artifactId">
+			<item value="ejercicio23-MercadoDeObjetos"/>
+			<item value="ParcialPrimeraFecha"/>
+			<item value="ejercicio24-PoolCar"/>
+			<item value="ejercicio23-PoolCar"/>
+			<item value="ejercicio21-Bag"/>
+			<item value="ejercicio18-PoliticasDeCancelacion"/>
+			<item value="ejercicio20-LiquidacionDeHaberes"/>
+			<item value="ejercicio19-ServicioDeEnviosDePaquetes"/>
+			<item value="ejercicio17-AlquilerDePropiedades"/>
+			<item value="ejercicio16-FilteredSet"/>
+			<item value="ejercicio15-DistribuidoraElectricaMIO"/>
+			<item value="ejercicio15-DistribuidoraElectrica"/>
+			<item value="ejercicio14-IntervaloDeTiempo"/>
+			<item value="ejercicio13-ClienteDeCorreo"/>
+			<item value="ejercicio12-VolumenYSuperficieDeSolidos"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
+		<list key="archetypeGroupId">
+			<item value="io.github.unlp-oo"/>
+			<item value="ar.edu.unlp.info.oo1"/>
+		</list>
+		<list key="archetypeArtifactId">
+			<item value="archetype"/>
+			<item value="objetos-uno"/>
+		</list>
+		<list key="archetypeVersion">
+			<item value="1.0.0"/>
+		</list>
+		<list key="repositoryUrl">
+			<item value=""/>
+			<item value="https://github.com/edu-unlp-info-objetos/oo1/blob/main/objetos-uno-archetype/objetos-uno-archetype-1.0.0.jar?raw=true"/>
+		</list>
+	</section>
+</section>

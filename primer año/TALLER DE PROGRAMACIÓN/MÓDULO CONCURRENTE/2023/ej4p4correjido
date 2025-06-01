@@ -1,0 +1,104 @@
+programa ej4p4
+procesos
+  proceso RecogerFlores
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso RecogerPapeles
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso VaciarBolsa 
+  comenzar
+    mientras (HayFlorEnLaBolsa)
+      depositarFlor
+    mientras (HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+  proceso RealizarTarea (E tarea: numero)
+  comenzar
+    si (tarea = 1)
+      RecogerFlores
+    sino
+      si (tarea = 2)
+        RecogerPapeles
+      sino
+        VaciarBolsa
+  fin
+areas
+  inicio1: AreaP (2,1,2,1)
+  inicio2: AreaP (3,1,3,1)
+  iniciojefe: AreaP (1,1,1,1)
+  cuadrante: AreaPC (2,2,100,100)
+robots
+  robot tipo1
+  variables
+    tarea, avInicio, caInicio, av, ca, quienSoy: numero
+  comenzar
+    RecibirMensaje (quienSoy, robotjefe)
+    avInicio:= PosAv
+    caInicio:= PosCa
+    RecibirMensaje (tarea, robotjefe)
+    mientras (tarea <> 4)
+      RecibirMensaje (av, robotjefe)
+      RecibirMensaje (ca, robotjefe)
+      BloquearEsquina (av,ca)
+      Pos (av, ca)
+      RealizarTarea (tarea)
+      Pos (avInicio, caInicio)
+      LiberarEsquina (av,ca)
+      EnviarMensaje (F, robotjefe)
+      RecibirMensaje (tarea, robotjefe)
+    EnviarMensaje (V, robotjefe)
+  fin
+  robot tipo2
+  variables
+    tarea, av, ca, r, quienEs, contador: numero 
+    termino1, termino2: boolean
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    mientras ( (contador < 10) & ~ (termino1) | ~ (termino2) )
+      contador:= contador + 1
+      Random (tarea, 1, 4)
+      si (termino1)
+        r:= 2
+      si (termino2)
+        r:= 1
+      si ~(termino1) & ~ (termino2)
+        Random (r, 1, 2) 
+      Random (av, 2, 100)
+      Random (ca, 2, 100)
+      si (r = 1)
+        EnviarMensaje (tarea, robot1)
+        EnviarMensaje (av, robot1)
+        EnviarMensaje (ca, robot1)
+        RecibirMensaje (termino1, robot1)
+      sino
+        EnviarMensaje (tarea, robot2)
+        EnviarMensaje (av, robot2)
+        EnviarMensaje (ca, robot2)
+        RecibirMensaje (termino2, robot2)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robotjefe: tipo2
+comenzar
+  AsignarArea (robot1, inicio1)
+  AsignarArea (robot1, cuadrante)
+  AsignarArea (robot2, inicio2)
+  AsignarArea (robot2, cuadrante)
+  AsignarArea (robotjefe, iniciojefe)
+  Iniciar (robot1, 2, 1)
+  Iniciar (robotjefe, 1,1)
+  Iniciar (robot2, 3, 1)
+fin
+    
+    
+    
+    
+    
+    

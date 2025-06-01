@@ -1,0 +1,72 @@
+programa ej3p2
+areas
+  calle1: AreaPC (1,1,20,1)
+  calle5: AreaPC (1,5,20,5)
+robots
+  robot tipo1
+  variables
+    quienSoy, p, papeles: numero
+  comenzar
+    si (PosAv = 1)
+      quienSoy:= 1
+    p:=0
+    papeles:=0
+    derecha
+    repetir 10
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+        papeles:= papeles + 1
+      mover
+    si (quienSoy = 1)
+      EnviarMensaje (papeles, robotA2)
+    sino
+      RecibirMensaje (p, robotA1)
+      papeles:= papeles + p
+      Informar (papeles)
+  fin
+  robot tipo2
+  variables
+    quienSoy, f, flores: numero
+  comenzar
+    si (PosAv = 1)
+      quienSoy:= 1
+    f:= 0
+    flores:= 0
+    derecha
+    repetir 10
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        flores:= flores + 1
+      mover
+    si (quienSoy = 1)
+      EnviarMensaje (flores, robotB2)
+    sino
+      RecibirMensaje (f, robotB1)
+      flores:= flores + f
+      Informar (flores)
+  fin
+variables
+  robotA1: tipo1
+  robotA2: tipo1
+  robotB1: tipo2
+  robotB2: tipo2
+comenzar
+  AsignarArea (robotA1, calle1)
+  AsignarArea (robotA2, calle1)
+  AsignarArea (robotB1, calle5)
+  AsignarArea (robotB2, calle5)
+  Iniciar (robotA1, 1, 1)
+  Iniciar (robotA2, 10, 1)
+  Iniciar (robotB1, 1, 5)
+  Iniciar (robotB2, 10, 5)
+fin 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+       

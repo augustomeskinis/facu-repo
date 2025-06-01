@@ -1,0 +1,26 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class EventoPresencial extends Evento {
+	private List <Sede> sedes;
+
+	public EventoPresencial(String nombre, LocalDate fecha, double precioInscripcion, double precioRemera,
+			List<Sede> sedes) {
+		super(nombre, fecha, precioInscripcion, precioRemera);
+		this.sedes = sedes;
+	}
+	
+	public double adicional () {
+		return this.sedes.stream().mapToDouble(sede -> sede.precioTotal()).sum();
+
+	}
+	
+	public void agregarSede(Sede sede) {
+		this.sedes.add(sede);
+	}
+	
+	
+	
+}

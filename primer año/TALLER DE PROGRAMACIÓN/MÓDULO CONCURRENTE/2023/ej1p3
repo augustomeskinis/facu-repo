@@ -1,0 +1,109 @@
+programa ej1p3
+procesos
+  proceso JuntarFlores 
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso JuntarPapeles 
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+areas
+  area1: AreaPC (1,1,5,10)
+  area2: AreaPC (6,1,10,9)
+  inicio1: AreaP (6,10,6,10)
+  inicio2: AreaP (7,10,7,10)
+  inicio3: AreaP (8,10,8,10)
+  inicio4: AreaP (9,10,9,10)
+  area3: AreaC (10,10,10,10)
+robots
+  robot tipo1
+  variables
+    calle, avenida, quienSoy: numero
+  comenzar
+    si (PosAv = 6)
+      quienSoy:= 1
+    repetir 5
+      Random (avenida, 1, 5)
+      Random (calle, 1, 10)
+      BloquearEsquina (avenida, calle)
+      Pos (avenida, calle)
+      JuntarFlores
+      BloquearEsquina (10,10)
+      Pos (10,10)
+      LiberarEsquina (avenida, calle)
+      mientras (HayFlorEnLaBolsa)
+        depositarFlor
+      si (quienSoy = 1)
+        Pos (6,10)
+      sino
+        Pos (7,10)
+      LiberarEsquina (10,10)
+  fin
+  robot tipo2
+  variables
+    calle, avenida, quienSoy: numero
+  comenzar
+    si (PosAv = 8)
+      quienSoy:= 1
+    repetir 3
+      Random (avenida, 6, 10)
+      Random (calle, 1, 9)
+      BloquearEsquina (avenida, calle)
+      Pos (avenida, calle)
+      JuntarPapeles
+      BloquearEsquina (10,10)
+      Pos (10,10)
+      LiberarEsquina (avenida, calle)
+      mientras (HayPapelEnLaBolsa)
+        depositarPapel
+      si (quienSoy = 1)
+        Pos (8,10)
+      sino  
+        Pos (9,10)
+      LiberarEsquina (10,10)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo2
+  robot4: tipo2
+comenzar
+  AsignarArea (robot1, area1)
+  AsignarArea (robot1, inicio1)
+  AsignarArea (robot1, area3)
+  AsignarArea (robot2, area1)
+  AsignarArea (robot2, inicio2)
+  AsignarArea (robot2, area3)
+  AsignarArea (robot3, area2)
+  AsignarArea (robot3, inicio3)
+  AsignarArea (robot3, area3)
+  AsignarArea (robot4, area2)
+  AsignarArea (robot4, inicio4)
+  AsignarArea (robot4, area3)
+  Iniciar (robot1, 6, 10)
+  Iniciar (robot2, 7, 10)
+  Iniciar (robot3, 8, 10)
+  Iniciar (robot4, 9, 10)
+fin
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  

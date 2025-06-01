@@ -1,0 +1,13 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class Cliente extends Usuario{
+	private 
+	
+	
+	
+	public Cliente (String nombre, String direccion) {
+		super(nombre,direccion);
+	}
+	
+	
+}

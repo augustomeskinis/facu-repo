@@ -1,0 +1,134 @@
+programa ej5p4
+procesos
+  proceso EnviarIDs 
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    EnviarMensaje (3, robot3)
+  fin
+  proceso JuntarFlores (ES flores: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:= flores + 1
+  fin
+  proceso evaluar (ES cant: numero)
+  variables
+    quienEs, N, av, casig: numero
+    ok: boolean
+  comenzar
+    RecibirMensaje(quienEs, *)
+    si (quienEs = 1)
+      RecibirMensaje(N, robot1)
+      si (N<>0)
+        RecibirMensaje(av, robot1)
+        RecibirMensaje(casig, robot1)
+        Pos(av,casig)
+        repetir N
+          depositarFlor
+        Pos (100,100)
+        EnviarMensaje(V, robot1)
+      sino
+        cant:= cant + 1
+    sino
+      si (quienEs = 2)
+        RecibirMensaje(N, robot2)
+        si (N <> 0)
+          RecibirMensaje(av, robot2)
+          RecibirMensaje(casig, robot2)
+          Pos (av, casig)
+          repetir N
+            depositarFlor
+          Pos (100,100)
+          EnviarMensaje(V, robot2)
+        sino
+          cant:= cant + 1
+      sino
+        si (quienEs = 3)
+          RecibirMensaje(N, robot3)
+          si (N <> 0)
+            RecibirMensaje(av, robot3)
+            RecibirMensaje(casig, robot3)
+            Pos (av, casig)
+            repetir N
+              depositarFlor
+            Pos (100, 100)
+            EnviarMensaje(V, robot3)
+          sino
+            cant:= cant + 1
+  fin  
+  proceso recorrerAv
+  variables
+    av, ca, casig, f: numero
+  comenzar
+    f:= 0
+    av:= PosAv
+    ca:= PosCa
+    casig:= PosCa + 1
+    Pos (av, casig)
+    JuntarFlores (f)
+    Pos (av, ca)
+    mientras ( (PosCa <> 99) & (f <> 0) )
+      depositarFlor
+      f:= f - 1
+      mover
+  fin
+areas
+  area1: AreaPC (1,1,1,100)
+  area2: AreaPC (2,1,2,100)
+  area3: AreaPC (3,1,3,100)
+  iniciojefe: AreaP (100,100,100,100)
+robots
+  robot tipo1
+  variables
+    av, ca, casig, quienSoy, N: numero
+    ok, listo: boolean
+  comenzar
+    RecibirMensaje(quienSoy, robotjefe)
+    mientras (listo = F)
+      Random(N, 1, 4)
+      av:= PosAv
+      ca:= PosCa
+      casig:= PosCa + 1
+      EnviarMensaje(quienSoy, robotjefe)
+      EnviarMensaje(N, robotjefe)
+      EnviarMensaje(av, robotjefe)
+      EnviarMensaje(casig, robotjefe)
+      RecibirMensaje(ok, robotjefe)
+      recorrerAv 
+      si (PosCa = 99)
+        EnviarMensaje(quienSoy, robotjefe)
+        N:= 0
+        EnviarMensaje(N, robotjefe)
+        listo:= V
+  fin
+  robot tipo2
+  variables
+    quienEs, N, cant, av, casig: numero
+    ok: boolean
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+    EnviarIDs
+    cant:= 0
+    mientras (cant <> 3)
+      evaluar(cant)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robotjefe: tipo2
+comenzar
+  AsignarArea (robot1, area1)
+  AsignarArea (robotjefe, area1)
+  AsignarArea (robot2, area2)
+  AsignarArea (robotjefe, area2)
+  AsignarArea (robot3, area3)
+  AsignarArea (robotjefe, area3)
+  AsignarArea (robotjefe, iniciojefe)
+  Iniciar (robot1, 1, 1)
+  Iniciar (robot2, 2, 1)
+  Iniciar (robot3, 3, 1)
+  Iniciar (robotjefe, 100, 100)
+fin

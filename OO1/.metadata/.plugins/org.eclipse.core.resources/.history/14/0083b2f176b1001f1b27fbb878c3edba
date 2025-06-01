@@ -1,0 +1,25 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class Entrada {
+	private boolean reembolso;
+	private LocalDate fecha;
+	private Evento evento;
+	
+	public Entrada(boolean reembolso, LocalDate fecha, Evento evento) {
+		super();
+		this.reembolso = reembolso;
+		this.fecha = fecha;
+		this.evento = evento;
+	}
+	
+	public double calcularMonto () {
+		int diasEntre = (int) ChronoUnit.DAYS.between(fecha, evento.getFecha());
+		if (diasEntre >= 30) {
+			return this.evento.consultarPrecio(LocalDate.now()) * 0.15;
+		}
+		return 0;
+	}
+}

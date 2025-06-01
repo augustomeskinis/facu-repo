@@ -1,0 +1,108 @@
+programa ej5repaso
+procesos
+  proceso JuntarPapeles
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso buscarpapeles (E papeles: numero; E av: numero; E ca: numero)
+  comenzar
+    BloquearEsquina(100,1)
+    repetir papeles
+      Pos(100,1)
+      tomarPapel
+      Pos(av,ca)
+      depositarPapel
+    LiberarEsquina(100,1)
+  fin
+  proceso EnviarIDs
+  comenzar
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    EnviarMensaje(3,robot3)
+  fin
+  proceso irEsquina (E papeles: numero)
+  comenzar
+    BloquearEsquina(100,1)
+    Pos(100,1)
+    repetir papeles
+      depositarPapel
+    Pos(13, 1)
+    LiberarEsquina(100,1)
+  fin
+  proceso avisar (E quienEs: numero; E papeles: numero)
+  comenzar
+    si (quienEs = 1)
+      EnviarMensaje(V,robot1)
+      EnviarMensaje(F, robot2)
+      EnviarMensaje(F, robot3)
+      EnviarMensaje (papeles, robot1)
+    sino
+      si (quienEs = 2)
+        EnviarMensaje(F, robot1)
+        EnviarMensaje(V,robot2)
+        EnviarMensaje(F, robot3)
+        EnviarMensaje (papeles, robot2)
+      sino
+        si (quienEs = 3)
+          EnviarMensaje(F,robot1)
+          EnviarMensaje(F,robot2)
+          EnviarMensaje(V, robot3)
+          EnviarMensaje (papeles, robot3)
+  fin
+areas
+  esquina: AreaC(100,1,100,1)
+  inicio1: AreaP(10,1,10,1)
+  inicio2: AreaP(11,1,11,1)
+  inicio3: AreaP(12,1,12,1)
+  iniciojefe: AreaP(13,1,13,1)
+robots
+  robot tipo1
+  variables
+    quienSoy, papeles, av, ca: numero
+    ok: boolean
+  comenzar
+    av:=PosAv
+    ca:=PosCa
+    RecibirMensaje(quienSoy, robotjefe)
+    repetir 4
+      EnviarMensaje(quienSoy, robotjefe)
+      RecibirMensaje(ok, robotjefe)
+      si (ok = V)
+        RecibirMensaje(papeles, robotjefe)
+        buscarpapeles(papeles, av, ca)
+  fin
+  robot tipo2
+  variables
+    quienEs, papeles: numero
+    terminio: boolean
+  comenzar
+    JuntarPapeles
+    EnviarIDs
+    repetir 4
+      RecibirMensaje(quienEs, *)
+      Random(papeles, 1, 5)
+      irEsquina(papeles)
+      avisar(quienEs, papeles)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robotjefe: tipo2
+comenzar
+  AsignarArea(robot1,esquina)
+  AsignarArea(robot2,esquina)
+  AsignarArea(robot3,esquina)
+  AsignarArea(robotjefe,esquina)
+  AsignarArea(robot1,inicio1)
+  AsignarArea(robot2, inicio2)
+  AsignarArea(robot3,inicio3)
+  AsignarArea(robotjefe,iniciojefe)
+  Iniciar(robot1, 10, 1)
+  Iniciar(robot2, 11, 1)
+  Iniciar(robot3, 12, 1)
+  Iniciar(robotjefe, 13, 1)
+fin
+      
+      

@@ -1,0 +1,23 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class Pedido {
+	private FormaDePago formaDePago;
+	private FormaDeEnvio formaDeEnvio;
+	private Producto producto;
+	
+	
+	public Pedido (FormaDePago formaDePago, FormaDeEnvio formaDeEnvio, Producto producto) {
+		this.producto = producto;
+		this.formaDeEnvio= formaDeEnvio;
+		this.formaDePago = formaDePago;
+	}
+	
+	public String getCategoria() {
+		return this.producto.getCategoria();
+	}
+	
+	public double precioTotal () {
+		reutrn this.formaDePago.precioFinal(this.producto.getPrecio()) + this.formaDeEnvio.costoDeEnvio();
+	}
+	
+}

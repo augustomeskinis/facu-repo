@@ -1,0 +1,51 @@
+programa ej2p3
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso JuntarFlores (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+robots
+  robot tipo1
+  variables
+    lado, quienSoy, f: numero
+  comenzar
+    RecibirMensaje (quienSoy, robot3)
+    lado:= 5
+    repetir 4
+      repetir lado
+        mover
+      JuntarFlores (f)
+      derecha
+      repetir lado
+        mover
+      JuntarFlores (f)
+      izquierda
+      lado:= lado - 1
+    BloquearEsquina (16,16)
+    mover
+    JuntarFlores (f)
+    derecha
+    mover
+    JuntarFlores (f)
+    EnviarMensaje (quienSoy, robot3)
+    Pos (PosAv - 1, PosCa)
+    LiberarEsquina (16,16)
+    repetir 2
+      derecha
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+    

@@ -1,0 +1,30 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+
+public abstract class Evento {
+	private String nombre;
+	private LocalDate fecha;
+	private double precioInscripcion;
+	private double precioRemera;
+	
+	public abstract double precioAsistencia ();
+	
+	public boolean tieneRecargo(LocalDate fecha) {
+		return fecha.isEqual(LocalDate.now());
+	}
+	
+	public double consultarPrecio(LocalDate fecha) {
+		return this.precioInscripcion + this.precioRemera;
+	}
+	
+	public double aplicarRecargo (LocalDate fecha, double aux) {
+		if (this.tieneRecargo(fecha)) {
+			return aux * 0.20;
+		}
+		return 0;
+	}
+	
+	
+	
+}

@@ -1,0 +1,75 @@
+programa ej1Dp2
+procesos
+  proceso recorrerAv (ES flores: numero)
+  comenzar
+    repetir 9
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        flores:= flores + 1
+      mover
+  fin
+areas 
+  area1: AreaP (1,1,1,10)
+  area2: AreaP (2,11,2,20)
+  areaF: AreaP (2,1,2,1)
+  area3: AreaP (3,21,3,30)
+  area4: AreaP (4,31,4,40)
+  area5: AreaP (5,41,5,50)
+  area6: AreaP (6,51,6,60)
+robots
+  robot tipo1
+  variables
+    f, quienSoy: numero
+  comenzar
+    recorrerAv(f)
+    RecibirMensaje (quienSoy, robot3)
+    EnviarMensaje (quienSoy, robot3)
+    EnviarMensaje (f, robot3)
+  fin
+  robot tipo2
+  variables
+    q, quien, f, max, maxr: numero
+  comenzar
+    max:= 0
+    q:= 1
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    EnviarMensaje (3, robot3)
+    EnviarMensaje (4, robot4)
+    EnviarMensaje (5, robot5)
+    EnviarMensaje (6, robot6)
+    repetir 6
+      RecibirMensaje (quien, *)
+      si (quien = q)
+        RecibirMensaje (f, robot1)
+        si (f > max)
+          max:= f
+          maxr:= quien
+      q:= q + 1
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robot4: tipo1
+  robot5: tipo1
+  robot6: tipo1
+  robotF: tipo2
+comenzar
+  AsignarArea (robot1, area1)
+  AsignarArea (robot2, area2)
+  AsignarArea (robot3, area3)
+  AsignarArea (robot4, area4)
+  AsignarArea (robot5, area5)
+  AsignarArea (robot6, area6) 
+  AsignarArea (robotF, areaF)
+  Iniciar (robot1,1,1)
+  Iniciar (robot2,2,11)
+  Iniciar (robot3,3,21)
+  Iniciar (robot4,4,31)
+  Iniciar (robot5, 5, 41)
+  Iniciar (robot6, 6, 51)
+  Iniciar (robotF,2,1)
+fin
+  
+

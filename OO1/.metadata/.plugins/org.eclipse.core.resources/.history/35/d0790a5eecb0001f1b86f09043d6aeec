@@ -1,0 +1,11 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+
+public abstract class Evento {
+	private String nombre;
+	private LocalDate fecha;
+	private double precioInscripcion;
+	private double precioRemera;
+	
+}

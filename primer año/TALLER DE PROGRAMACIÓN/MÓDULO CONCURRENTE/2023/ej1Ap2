@@ -1,0 +1,58 @@
+programa ej1p2
+procesos
+  proceso recorrerAv (ES flores: numero)
+  comenzar
+    repetir 10
+      mientras (HayFlorEnLaEsquina)
+        tomarFlor
+        flores:= flores + 1
+      mover
+  fin
+areas 
+  area1: AreaP (1,1,1,11)
+  area2: AreaP (2,11,2,21)
+robots
+  robot tipo1
+  variables
+    f, FR: numero
+  comenzar
+    recorrerAv (f)
+    EnviarMensaje (f, robot2)
+    RecibirMensaje (FR, robot2)
+    si (f > FR)
+      Informar (f-FR)
+  fin
+  robot tipo2
+  variables
+    f, FR: numero
+  comenzar
+    recorrerAv (f)
+    EnviarMensaje (f, robot1)
+    RecibirMensaje (FR, robot1)
+    si (f > FR)
+      Informar (f-FR)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo2
+comenzar
+  AsignarArea (robot1, area1)
+  AsignarArea  (robot2, area2)
+  Iniciar (robot1,1,1)
+  Iniciar (robot2,2,11)
+fin
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

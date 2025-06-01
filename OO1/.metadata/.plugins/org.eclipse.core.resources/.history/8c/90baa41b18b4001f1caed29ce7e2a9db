@@ -1,0 +1,17 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.time.LocalDate;
+
+public class EventoVirtual extends Evento {
+	private double montoFijo;
+
+	public EventoVirtual(String nombre, LocalDate fecha, double precioInscripcion, double precioRemera,
+			double montoFijo) {
+		super(nombre, fecha, precioInscripcion, precioRemera);
+		this.montoFijo = montoFijo;
+	}
+	
+	public double adicional(){
+		return this.montoFijo;
+	}
+}

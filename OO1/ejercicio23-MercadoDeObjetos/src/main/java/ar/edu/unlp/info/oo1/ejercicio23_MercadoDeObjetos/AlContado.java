@@ -1,0 +1,7 @@
+package ar.edu.unlp.info.oo1.ejercicio23_MercadoDeObjetos;
+
+public class AlContado implements FormaDePago{
+	public double precioFinal (double precio) {
+		return precio;
+	}
+}

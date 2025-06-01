@@ -1,0 +1,20 @@
+package ar.edu.unlp.info.oo1.ParcialPrimeraFecha;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Usuario {
+	private String nombre;
+	private List <Entrada> entradas;
+	
+	public Usuario (String nombre) {
+		this.nombre = nombre;
+		this.entradas = new ArrayList<Entrada>();
+	}
+	
+	public Entrada comprarEntrada (double reembolso, Evento evento) {
+		Entrada entrada = new Entrada (reembolso, evento) ;
+		this.entradas.add(entrada);
+		return entrada;
+	}
+}

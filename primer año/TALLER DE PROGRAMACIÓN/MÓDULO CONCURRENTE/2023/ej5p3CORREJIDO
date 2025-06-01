@@ -1,0 +1,99 @@
+programa ej5p3
+areas
+  esquina: AreaC (11,11,11,11)
+  av4: AreaP (4,1,4,100)
+  av6: AreaP (6,1,6,100)
+  av8: AreaP (8,1,8,100)
+  av10: AreaP (10,1,10,100)
+  iniciojefe: AreaP (1,1,1,1)
+robots
+  robot tipo1
+  variables
+    quienSoy,av,ca: numero
+    hay: boolean
+  comenzar
+    RecibirMensaje (quienSoy, robotjefe)
+    av:= PosAv
+    ca:= PosCa
+    hay:= V
+    BloquearEsquina (11,11)
+    Pos (11,11)
+    si (HayPapelEnLaEsquina)
+      tomarPapel
+    sino
+      hay:= F
+    Pos(av,ca)
+    LiberarEsquina(11,11)
+    mientras ( (hay = V) & (PosCa < 99) )
+      depositarPapel
+      mover
+      ca:= ca + 1
+      BloquearEsquina(11,11)
+      Pos(11,11)
+      si (HayPapelEnLaEsquina)
+        tomarPapel
+      sino
+        hay:= F
+      Pos(av,ca)
+      LiberarEsquina(11,11)
+    EnviarMensaje (quienSoy, robotjefe)
+    EnviarMensaje (ca, robotjefe)
+  fin
+  robot tipo2
+  variables
+    quienEs, calle, maxcalle,maxrobot: numero
+  comenzar
+    EnviarMensaje (1,robot1)
+    EnviarMensaje (2,robot2)
+    EnviarMensaje (3, robot3)
+    EnviarMensaje (4, robot4)
+    maxcalle:= 0
+    maxrobot:= 0
+    repetir 4
+      RecibirMensaje (quienEs, *)
+      si (quienEs = 1)
+        RecibirMensaje (calle, robot1)
+        si (calle > maxcalle)
+          maxcalle:= calle
+          maxrobot:= 1
+      sino
+        si (quienEs = 2)
+          RecibirMensaje (calle, robot2)
+          si (calle > maxcalle)
+            maxcalle:= calle
+            maxrobot:= 2
+        sino
+          si (quienEs = 3)
+            RecibirMensaje (calle,robot3)
+            si (calle > maxcalle)
+              maxcalle:= calle
+              maxrobot:= 3
+          sino
+            RecibirMensaje (calle, robot4)
+            si (calle > maxcalle)
+              maxcalle:= calle
+              maxrobot:= 4
+    Informar (maxrobot)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo1
+  robot3: tipo1
+  robot4: tipo1
+  robotjefe: tipo2
+comenzar
+  AsignarArea (robot1, av4)
+  AsignarArea (robot1, esquina)
+  AsignarArea (robot2, av6)
+  AsignarArea (robot2, esquina)
+  AsignarArea (robot3, av8)
+  AsignarArea (robot3, esquina)
+  AsignarArea (robot4, av10)
+  AsignarArea (robot4, esquina)
+  AsignarArea (robotjefe, iniciojefe)
+  Iniciar (robot1, 4, 1)
+  Iniciar (robot2, 6, 1)
+  Iniciar (robot3, 8, 1)
+  Iniciar (robot4, 10, 1)
+  Iniciar (robotjefe, 1,1)
+fin

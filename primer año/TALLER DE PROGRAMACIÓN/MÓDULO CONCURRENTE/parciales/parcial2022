@@ -1,0 +1,134 @@
+programa parcial23052022
+procesos
+  proceso juntarFlores
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarFloress(ES flores:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      flores:= flores+1
+  fin
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso irCalleCentral(E av: numero; E ca: numero)
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      BloquearEsquina(av,20)
+      Pos(av,20)
+      depositarFlor
+      Pos(av,ca)
+      LiberarEsquina(av,20)
+  fin
+areas
+  ciudad:AreaC(1,1,100,100)
+robots
+  robot lateral
+  comenzar
+    si(PosAv=9)
+      derecha
+    sino
+      izquierda
+    repetir 10
+      mover
+      si(HayFlorEnLaBolsa)
+        irCalleCentral(PosAv,PosCa)
+      juntarFlores
+    si(PosAv=19)
+      EnviarMensaje(V,robot3)
+    sino
+      EnviarMensaje(V,robot6)
+  fin
+  robot central
+  variables
+    ok: boolean
+    av, ca, quienSoy: numero
+  comenzar
+    RecibirMensaje(quienSoy,robotjefe)
+    repetir 2
+      RecibirMensaje(ok,*)
+    si(quienSoy=1)
+      derecha
+    sino
+      izquierda
+    repetir 10
+      juntarFlores
+      mover
+    av:=PosAv
+    ca:=PosCa
+    BloquearEsquina(20,20)
+    Pos(20,20)
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+    Pos(av,ca)
+    LiberarEsquina(20,20)
+    EnviarMensaje(quienSoy,robotjefe)
+  fin
+  robot jefe
+  variables
+    ok:boolean
+    floresMax,eqMax, quienEs, cont,flores,av,ca: numero
+  comenzar
+    EnviarMensaje(1,robot3)
+    EnviarMensaje(2,robot6)
+    cont:=0
+    flores:=0
+    floresMax:=-1
+    av:= PosAv
+    ca:= PosCa
+    mientras(cont<2)
+      cont:=cont+1
+      RecibirMensaje(quienEs,*)
+      si(quienEs=1)
+        si(cont=1)
+          Informar(1)
+        sino
+          Informar(2)
+        BloquearEsquina(20,20)
+        Pos(20,20)
+        juntarFloress(flores)
+        Pos(av,ca)
+        LiberarEsquina(20,20)
+        si(flores>floresMax)
+          floresMax:= flores
+          eqMax:= 1
+      sino
+        BloquearEsquina(20,20)
+        Pos(20,20)
+        juntarFloress(flores)
+        Pos(av,ca)
+        LiberarEsquina(20,20)
+        si(flores>floresMax)
+          floresMax:= flores
+          eqMax:= 2
+    Informar(eqMax)
+  fin
+variables
+  robot1: lateral
+  robot2: lateral
+  robot3: central
+  robot4: lateral
+  robot5: lateral
+  robot6: central
+  robotjefe: jefe
+comenzar
+  AsignarArea(robot1,ciudad)
+  AsignarArea(robot2,ciudad)
+  AsignarArea(robot3,ciudad)
+  AsignarArea(robot4,ciudad)
+  AsignarArea(robot5,ciudad)
+  AsignarArea(robot6,ciudad)
+  AsignarArea(robotjefe,ciudad)
+  Iniciar(robot1,9,19)
+  Iniciar(robot3,9,20)
+  Iniciar(robot2,9,21)
+  Iniciar(robot4,31,19)
+  Iniciar(robot6,31,20)
+  Iniciar(robot5,31,21)
+  Iniciar(robotjefe,20,18)
+fin

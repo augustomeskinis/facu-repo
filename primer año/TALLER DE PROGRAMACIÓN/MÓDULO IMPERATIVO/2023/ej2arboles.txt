@@ -1,0 +1,102 @@
+program ej2;
+type
+
+	venta = record
+		codigo: integer;
+		fecha: integer;
+		unidadesvendidas: integer;
+	end;
+	
+	
+	productosvendidos  = record
+		codigo: integer;
+		unidadesvendidas: integer;
+	end;
+	
+	arbol = ^nodo;
+	arbol2 = ^nodo2;
+	
+	nodo=record
+		dato: venta;
+		hi: arbol;
+		hd: arbol;
+	end;
+	
+	nodo2 = record
+		dato: productosvendidos;
+		hi: arbol2;
+		hd: arbol2;
+	end;
+	
+	
+	
+	
+	
+	
+procedure leerventa (var v: venta)	;
+begin
+	writeln ('ingrese el codigo del producto: ');
+	read (v.codigo);
+	writeln ('ingrese la fecha: ');
+	read (v.fecha);
+	writeln ('ingrese las unidades vendidas: ');
+	read (v.unidadesvendidas);
+end;
+
+procedure agregar1 (var a: arbol; v: venta);
+begin
+	
+	
+	if (a=nil) then
+	begin
+		new (a);
+		a^.dato:= v;
+		a^.hi:= nil;
+		a^.hd:= nil;
+	end
+	else 
+		if (v.codigo <= a^.dato.codigo) then
+			agregar1 (a^.hi, v)
+		else
+			agregar1 (a^.hd, v)
+end;
+
+
+
+procedure agregar2 (var a: arbol2; c, uv: integer);
+begin
+	if (a = nil) then
+	begin
+		new (a);
+		a^.dato.codigo:= c;
+		a^.dato.unidadesvendidas:= uv;
+		a^.hi:= nil;
+		a^.hd:= nil;
+	end
+	
+	else
+		if (c <= a^.dato.codigo) then
+			agregar2 (a^.hi, c, uv)
+		else
+			agregar2 (a^.hd, c, uv)
+end;
+
+function cantidad_unidades (a: arbol; cod: integer) : integer ;
+begin
+	if (a<>nil) then begin
+		
+		if(a^cod  < cod)
+			cantidad_unidades:= cantidad_unidades(hd,cod)
+		else
+		  if (a^cod > cod)
+			hi
+		else
+		  cantidad_unidades:= 1 cantidad_unidades(hi)
+		  
+	else
+		cantidad_unidades:=0;
+	else
+		writeln ('no se encontro el codigo');
+		cantidad_unidades:= 0;
+		
+end;

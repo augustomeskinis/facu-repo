@@ -1,0 +1,116 @@
+programa ej2p3
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso JuntarFlores (ES f: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso JuntarPapeles (ES p: numero)
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso escalon2 (ES lado: numero; ES p: numero)
+  comenzar
+    repetir lado
+      mover
+    JuntarPapeles (p)
+    izquierda
+    repetir lado
+      mover
+    JuntarPapeles (p)
+    derecha
+  fin
+  proceso escalon1 (ES lado: numero; ES f: numero)
+  comenzar
+    repetir lado
+      mover
+    derecha
+    JuntarFlores (f)
+    repetir lado
+      mover
+    izquierda
+    JuntarFlores (f)
+  fin
+areas
+  ciudad: AreaC (1,1,100,100) 
+robots
+  robot tipo1
+  variables
+    lado, quienSoy, f: numero
+  comenzar
+    RecibirMensaje (quienSoy, robot3)
+    f:= 0
+    lado:= 5
+    repetir 4
+      escalon1 (lado, f)
+      lado:= lado - 1
+    BloquearEsquina (16,16)
+    escalon1 (lado, f)
+    EnviarMensaje (quienSoy, robot3)
+    Pos (PosAv - 1, PosCa)
+    LiberarEsquina (16,16)
+    izquierda
+    repetir 4
+      lado:= lado + 1
+      escalon1 (lado, f)
+    Informar (f)
+  fin
+  robot tipo2
+  variables
+    lado, quienSoy, p: numero
+  comenzar
+    RecibirMensaje (quienSoy, robot3)
+    p:= 0
+    lado:= 5
+    repetir 4
+      escalon2 (lado, p)
+      lado:= lado - 1
+    BloquearEsquina (16,16)
+    escalon2 (lado, p)
+    EnviarMensaje (quienSoy, robot3)
+    Pos (PosAv + 1, PosCa)
+    LiberarEsquina (16,16)
+    derecha
+    repetir 4
+      lado:= lado + 1
+      escalon2 (lado, p)
+    Informar (p)
+  fin
+  robot tipo3
+  variables
+    quienEs: numero
+  comenzar
+    EnviarMensaje (1, robot1)
+    EnviarMensaje (2, robot2)
+    RecibirMensaje (quienEs, *)
+    Informar (quienEs)
+  fin
+variables
+  robot1: tipo1
+  robot2: tipo2
+  robot3: tipo3
+comenzar
+  AsignarArea (robot1, ciudad)
+  AsignarArea (robot2, ciudad)
+  AsignarArea (robot3, ciudad)
+  Iniciar (robot1, 1, 1)
+  Iniciar (robot2, 31, 1)
+  Iniciar (robot3, 15,1)
+fin
+    
+        
+        
+        
+        
+        
+        
+        
+    
