@@ -50,10 +50,10 @@ public class ParcialCorrejido {
                 int valorHijo = child.getData();
                 if (esAlterno(valorActual,valorHijo)){
                     buscarCamino(child,caminoActual,caminoMasLargo);
-                    caminoActual.remove(caminoActual.size()-1);
                 }
             }
         }
+        caminoActual.remove(caminoActual.size()-1);
     }
     public static void main(String[] args) {
         /*             1

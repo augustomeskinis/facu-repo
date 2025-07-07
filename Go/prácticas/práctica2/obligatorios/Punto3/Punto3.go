@@ -78,42 +78,53 @@ func Insert(o OptimumSlice, element int, posicion int) OptimumSlice {
 
 	var nuevoSlice OptimumSlice
 	pos := 0 // posición descomprimida acumulada
+	insertado := false
 
 	for _, bloque := range o {
 		// Si el nuevo elemento va antes de este bloque
-		if pos+bloque.ocurrencias < posicion {
+		if !insertado && pos+bloque.ocurrencias < posicion {
+			// El nuevo elemento aún no va acá
 			nuevoSlice = append(nuevoSlice, bloque)
 			pos += bloque.ocurrencias
 			continue
 		}
-
 		// Si el nuevo elemento va dentro de este bloque
-		if pos <= posicion && posicion < pos+bloque.ocurrencias {
+		if !insertado && pos <= posicion && posicion <= pos+bloque.ocurrencias {
 			offset := posicion - pos
 			// Parte 1 del bloque (antes del insert)
 			if offset > 0 {
 				nuevoSlice = append(nuevoSlice, elemOcurre{elemento: bloque.elemento, ocurrencias: offset})
 			}
-			// Elemento a insertar
+			// Insertar el nuevo elemento
 			nuevoSlice = append(nuevoSlice, elemOcurre{elemento: element, ocurrencias: 1})
 			// Parte 2 del bloque (después del insert)
 			if offset < bloque.ocurrencias {
 				nuevoSlice = append(nuevoSlice, elemOcurre{elemento: bloque.elemento, ocurrencias: bloque.ocurrencias - offset})
 			}
-			pos += bloque.ocurrencias // para salir del ciclo
+			insertado = true
+			pos += bloque.ocurrencias
 			continue
 		}
-
 		// Si ya insertamos, agregamos el resto sin cambios
 		nuevoSlice = append(nuevoSlice, bloque)
+		pos += bloque.ocurrencias
 	}
 
-	// Caso especial: insertar al final
-	if posicion == Len(o) {
+	if !insertado {
+		// Insertar al final
 		nuevoSlice = append(nuevoSlice, elemOcurre{elemento: element, ocurrencias: 1})
 	}
 
-	return nuevoSlice
+	// Fusión de bloques consecutivos con el mismo elemento
+	var fusionado OptimumSlice
+	for _, bloque := range nuevoSlice {
+		if len(fusionado) > 0 && fusionado[len(fusionado)-1].elemento == bloque.elemento {
+			fusionado[len(fusionado)-1].ocurrencias += bloque.ocurrencias
+		} else {
+			fusionado = append(fusionado, bloque)
+		}
+	}
+	return fusionado
 }
 
 // Función que devuelve el slice descomprimido

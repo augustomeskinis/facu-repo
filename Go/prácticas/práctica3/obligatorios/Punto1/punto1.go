@@ -1,5 +1,6 @@
 package main
 
+//Importaciones
 import (
 	"fmt"
 	"math"
@@ -9,6 +10,7 @@ import (
 	"time"
 )
 
+// Funciones
 func esPrimo(n int) bool {
 	if n <= 1 {
 		return false
@@ -22,6 +24,7 @@ func esPrimo(n int) bool {
 	return true
 }
 
+// Goroutines
 func lista1(n int, wg *sync.WaitGroup, canal chan []int) {
 	defer wg.Done()
 	var slice = []int{}
@@ -32,7 +35,6 @@ func lista1(n int, wg *sync.WaitGroup, canal chan []int) {
 	}
 	canal <- slice
 }
-
 func lista2(n1 int, n2 int, wg *sync.WaitGroup, canal chan []int) {
 	defer wg.Done()
 	var slice = []int{}
@@ -44,6 +46,7 @@ func lista2(n1 int, n2 int, wg *sync.WaitGroup, canal chan []int) {
 	canal <- slice
 }
 
+// Main
 func main() {
 	n, err := strconv.Atoi(os.Args[1])
 	if (err != nil) || (n <= 0) {
@@ -58,9 +61,10 @@ func main() {
 		wg.Wait()
 		duracion := time.Since(inicio)
 		fmt.Println(slice)
-		fmt.Println("tiempo = ", duracion.Milliseconds())
+		fmt.Println("Tiempo de una sola goroutine = ", duracion.Milliseconds())
+		//Punto b
 		wg.Add(3)
-		tope := (n / 3)
+		tope := (n / 3) //Tope me determina el rango. Ej: si n = 9, tope vale 3 por lo que se divide en 3 la obtención de los primos
 		inicio2 := time.Now()
 		go lista2(1, tope, &wg, canal)
 		go lista2(tope+1, tope*2, &wg, canal)
@@ -71,13 +75,7 @@ func main() {
 		fmt.Println(a)
 		fmt.Println(b)
 		fmt.Println(c)
-		fmt.Println("tiempo2 = ", duracion2.Milliseconds())
-		fmt.Println("Speed Up = ", duracion.Milliseconds()/duracion2.Milliseconds())
+		fmt.Println("Tiempo de varias goroutine = ", duracion2.Milliseconds())
+		fmt.Println("Speed-Up = ", duracion.Milliseconds()/duracion2.Milliseconds())
 	}
 }
-
-/*
-	ejercicio c) con N = 1.000, speed up = 0
-				 con N = 100.000, speed up = 2
-				 con N = 1.000.000, speed up = 2
-*/
