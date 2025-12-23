@@ -6,7 +6,7 @@ public class Ejercicio7 {
     public Ejercicio7() {
         this.arbol = new BinaryTree<>(2);
         BinaryTree<Integer> nodo2 = new BinaryTree(7);
-        BinaryTree<Integer>nodo3 = new BinaryTree(-5);
+        BinaryTree<Integer> nodo3 = new BinaryTree(-5);
 
         this.arbol.addLeftChild(nodo2);
         this.arbol.addRightChild(nodo3);
@@ -36,68 +36,65 @@ public class Ejercicio7 {
         nodo10.addLeftChild(nodo11);
     }
 
-    public BinaryTree<Integer> buscarNodo(BinaryTree<Integer> ab,int num){
-        boolean encontre=false;
+    public BinaryTree<Integer> buscarNodo(BinaryTree<Integer> ab, int num) {
+        boolean encontre = false;
         BinaryTree<Integer> arbol = null;
-        if(ab.getData() == num) {
+        if (ab.getData() == num) {
             arbol = ab;
-            encontre=true;
+            encontre = true;
         }
         if (ab.hasLeftChild() && !encontre) {
-            arbol=buscarNodo(ab.getLeftChild(),num);
-            if(arbol!=null) {
-                encontre=true;
+            arbol = buscarNodo(ab.getLeftChild(), num);
+            if (arbol != null) {
+                encontre = true;
             }
         }
         if (ab.hasRightChild() && !encontre) {
-            arbol=buscarNodo(ab.getRightChild(),num);
+            arbol = buscarNodo(ab.getRightChild(), num);
         }
         return arbol;
     }
 
-    public int calcularHijos(BinaryTree<Integer>ab,int suma) {
-        if(ab.hasLeftChild() && !ab.hasRightChild()) {
-            calcularHijos(ab.getLeftChild(),suma++);
-        }
-        else {
+    public int calcularHijos(BinaryTree<Integer> ab, int suma) {
+        if (ab.hasLeftChild() && !ab.hasRightChild()) {
+            calcularHijos(ab.getLeftChild(), suma++);
+        } else {
             if (!ab.hasLeftChild() && ab.hasRightChild()) {
-                calcularHijos(ab.getRightChild(),suma++);
-            }
-            else {
+                calcularHijos(ab.getRightChild(), suma++);
+            } else {
                 if (ab.hasLeftChild() && ab.hasRightChild()) {
-                    calcularHijos(ab.getLeftChild(),suma);
-                    calcularHijos(ab.getRightChild(),suma);
+                    calcularHijos(ab.getLeftChild(), suma);
+                    calcularHijos(ab.getRightChild(), suma);
                 }
             }
         }
         return suma;
     }
 
-
     public boolean tieneMas(BinaryTree<Integer> ab) {
-        int suma=0,sumaI=0,sumaD=0;
+        int suma = 0, sumaI = 0, sumaD = 0;
         if (ab.hasLeftChild()) {
             sumaI = calcularHijos(ab.getLeftChild(), suma);
         }
-        suma=0;
+        suma = 0;
         if (ab.hasRightChild()) {
             sumaD = calcularHijos(ab.getRightChild(), suma);
         }
-        return sumaI>sumaD;
+        return sumaI > sumaD;
     }
 
     public boolean isLeftTree(int num) {
-        BinaryTree<Integer> arbolNum = this.buscarNodo(this.arbol,num);
+        BinaryTree<Integer> arbolNum = this.buscarNodo(this.arbol, num);
         if (arbolNum == null) {
-            System.out.println ("no encontre el nodo: "+ num);
+            System.out.println("no encontre el nodo: " + num);
             return false;
         }
-        System.out.println ("encontre el nodo: "+ arbolNum.getData());
+        System.out.println("encontre el nodo: " + arbolNum.getData());
         return tieneMas(arbolNum);
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         Ejercicio7 ej7 = new Ejercicio7();
-        System.out.println("tiene más hijos?"+ ej7.isLeftTree(14));
+        System.out.println("tiene más hijos?" + ej7.isLeftTree(14));
     }
 }

@@ -14,7 +14,6 @@ public class Main {
         }
     }
 
-
     public static void main(String[] args) {
         metodo1(1,10);
         metodo1(1,10);

@@ -1,0 +1,85 @@
+Barberia = (codBarberia, razon_social, direccion, telefono)
+Cliente = (nroCliente, DNI, nombYAp, direccionC, fechaNacimiento, celular)
+Barbero = (codEmpleado, DNIB, nombYApB, direccionB, telefonoContacto, mail)
+Atencion = (codEmpleado(fk), fecha, hora, codBarberia(fk), nroCliente(fk),descTratamiento, valor)
+
+
+1. Listar DNI, nombre y apellido, dirección, fecha de nacimiento y celular de clientes que no tengan
+atenciones durante 2024.
+
+
+SELECT c.DNI, c.nombYAp, c.direccionC, c.fechaNacimiento, c.celular
+FROM Cliente c
+WHERE NOT EXISTS (
+  SELECT * 
+  FROM Atencion a
+  WHERE c.nroCliente = a.nroCliente AND YEAR(a.fecha) = 2024
+);
+
+
+2. Listar para cada barbero cantidad de atenciones que realizaron durante 2023. Listar DNI,
+nombre y apellido, dirección, teléfono de contacto, mail y cantidad de atenciones.
+
+
+SELECT b.DNIB,b.nombYApB,b.direccionB,b.telefonoContacto,b.mail,COUNT(*)as cantidad_atenciones
+FROM Barbero b
+INNER JOIN Atencion a on b.codEmpleado=a.codEmpleado
+WHERE YEAR(a.fecha)=2023
+GROUP BY b.codEmpleado,b.DNIB,b.nombYApB,b.direccionB,b.telefonoContacto,b.mail
+
+
+3. Listar razón social, dirección y teléfono de barberías que tengan atenciones para el cliente con
+DNI 22283566. Ordenar por razón social y dirección ascendente.
+
+
+SELECT DISTINCT bar.razon_social, bar.direccion, bar.telefono
+FROM Barberia bar
+INNER JOIN Atencion a ON bar.codBarberia=a.codBarberia
+INNER JOIN Cliente c ON a.nroCliente=c.nroCliente
+WHERE c.DNI=22283566
+ORDER BY bar.razon_social,bar.direccion ASC
+
+
+4. Listar DNI, nombre y apellido, dirección, teléfono de contacto y mail de barberos que tengan
+atenciones con valor superior a $5000.
+
+
+SELECT DISTINCT b.DNIB,b.nombYApB,b.direccionB,b.telefonoContacto,b.mail
+FROM Barbero b
+INNER JOIN Atencion a ON b.codEmpleado=a.codEmpleado
+WHERE a.valor>5000
+
+
+5. Listar DNI, nombYAp, direccionC, fechaNacimiento y celular de clientes que tengan atenciones
+en la barbería con razón social: ‘Corta barba’ y también se hayan atendido en la barbería con
+razón social: ‘Barberia Barbara’.
+
+
+SELECT c.DNI, c.nombYAp, c.direccionC, c.fechaNacimiento, c.celular
+FROM Cliente c
+WHERE EXISTS (
+  SELECT *
+  FROM Barberia bar
+  INNER JOIN Atencion a ON bar.codBarberia=a.codBarberia
+  WHERE c.nroCliente=a.nroCliente and bar.razon_social='Corta Barba'
+)
+AND EXISTS (
+  SELECT *
+  FROM Barberia bar2
+  INNER JOIN Atencion a2 ON bar2.codBarberia=a2.codBarberia
+  WHERE c.nroCliente=a2.nroCliente and bar2.razon_social='Barberia Barbara'
+);
+
+
+6. Eliminar el cliente con DNI 22222222.
+
+
+DELETE FROM Atencion
+WHERE nroCliente = (
+    SELECT nroCliente
+    FROM Cliente
+    WHERE DNI = 22222222
+);
+DELETE FROM Cliente
+WHERE DNI = 22222222;
+

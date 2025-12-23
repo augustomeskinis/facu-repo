@@ -1,0 +1,178 @@
+Persona = (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
+Alumno = (DNI (fk), Legajo, Anio_Ingreso)
+Profesor = (DNI (fk), Matricula, Nro_Expediente)
+Titulo = (Cod_Titulo, Nombre, Descripcion)
+Titulo-Profesor = (Cod_Titulo (fk), DNI (fk), Fecha)
+Curso = (Cod_Curso, Nombre, Descripcion, Fecha_Creacion, Duracion)
+Alumno-Curso = (DNI (fk), Cod_Curso (fk), Anio, Desempenio, Calificacion)
+Profesor-Curso = (DNI (fk), Cod_Curso (fk), Fecha_Desde, Fecha_Hasta?)
+
+
+1. Listar DNI, legajo y apellido y nombre de todos los alumnos que tengan año de ingreso inferior a
+2014.
+
+
+SELECT a.DNI, a.Legajo, a.Anio_Ingreso, p.nombre, p.apellido
+FROM Alumno a
+INNER JOIN Persona p ON (a.DNI = p.DNI)
+WHERE a.Anio_Ingreso < '2014-01-01'
+
+
+
+2. Listar DNI, matrícula, apellido y nombre de los profesores que dictan cursos que tengan más de
+100 horas de duración. Ordenar por DNI.
+
+
+SELECT p.DNI, p.Matricula, pe.Apellido, pe.Nombre
+FROM Profesor p
+INNER JOIN Persona pe ON (p.DNI = pe.DNI)
+INNER JOIN Profesor_Curso pc on (p.DNI = pc.DNI)
+INNER JOIN Curso c ON (pc.Cod_Curso = c.Cod_Curso)
+WHERE c.Duracion > 100
+
+
+3. Listar el DNI, Apellido, Nombre, Género y Fecha de nacimiento de los alumnos inscriptos al
+curso con nombre “Diseño de Bases de Datos” en 2023.
+
+
+SELECT a.DNI, pe.Apellido, pe.Nombre, pe.Genero, pe.Fecha_Nacimiento
+FROM Alumno a
+INNER JOIN Persona pe ON (a.DNI = pe.DNI)
+INNER JOIN Alumno_Curso ac ON (a.DNI = ac.DNI)
+INNER JOIN Curso c ON (ac.Cod_Curso= c.Cod_Curso)
+WHERE ac.Anio = 2023 and c.Nombre = 'Diseño de bases de datos'
+
+
+
+4. Listar el DNI, Apellido, Nombre y Calificación de aquellos alumnos que obtuvieron una
+calificación superior a 8 en algún curso que dicta el profesor “Juan Garcia”. Dicho listado deberá
+estar ordenado por Apellido y nombre.
+
+
+SELECT a.DNI, pe.Apellido, pe.Nombre, ac.Calificacion
+FROM Alumno a
+INNER JOIN Persona pe ON (a.DNI = pe.DNI)
+INNER JOIN Alumno_Curso ac ON (a.DNI = ac.DNI)
+INNER JOIN Profesor_Curso pc ON (ac.Cod_Curso = pc.Cod_Curso)
+INNER JOIN Persona p ON (pc.DNI = p.DNI)
+WHERE (ac.Calificacion > 8) and (p.Nombre = 'Juan') and (p.Apellido = 'Garcia')
+ORDER BY pe.Nombre and pe.Apellido
+
+
+
+5. Listar el DNI, Apellido, Nombre y Matrícula de aquellos profesores que posean más de 3 títulos.
+Dicho listado deberá estar ordenado por Apellido y Nombre.
+
+
+SELECT pe.DNI, pe.Apellido, pe.Nombre, pr.Matricula, COUNT(tp.Cod_Titulo)as cant
+FROM Persona pe
+INNER JOIN Profesor pr ON (pe.DNI = pr.DNI)
+INNER JOIN Titulo_Profesor tp ON (pe.DNI = tp.DNI)
+GROUP BY pe.DNI, pe.Apellido, pe.Nombre, pr.Matricula
+HAVING cant > 3
+ORDER BY pe.Apellido, pe.Nombre
+
+
+6. Listar el DNI, Apellido, Nombre, Cantidad de horas y Promedio de horas que dicta cada profesor.
+La cantidad de horas se calcula como la suma de la duración de todos los cursos que dicta.
+
+
+SELECT p.DNI, p.Apellido, p.Nombre, SUM(c.Duracion), AVG(c.Duracion)
+FROM Profesor profe 
+INNER JOIN Persona p ON (profe.DNI = p.DNI)
+LEFT JOIN Profesor_Curso pc ON (profe.DNI = pc.DNI)
+LEFT JOIN Curso c ON (pc.Cod_Curso = c.Cod_Curso)
+GROUP BY p.DNI, p.Apellido, p.Nombre
+
+
+7. Listar Nombre y Descripción del curso que posea más alumnos inscriptos y del que posea
+menos alumnos inscriptos durante 2024.
+
+
+-- Curso con MÁS alumnos en 2024
+SELECT c.Nombre, c.Descripcion
+FROM Curso c
+INNER JOIN Alumno_Curso ac ON (c.Cod_Curso = ac.Cod_Curso)
+WHERE ac.Anio = 2024
+GROUP BY c.Cod_Curso, c.Nombre, c.Descripcion
+HAVING COUNT(ac.DNI) = (
+    SELECT MAX(cantidad)
+    FROM (
+        SELECT COUNT(ac2.DNI) as cantidad
+        FROM Alumno_Curso ac2
+        WHERE ac2.Anio = 2024
+        GROUP BY ac2.Cod_Curso
+    ) AS subconsulta
+)
+UNION
+-- Curso con MENOS alumnos en 2024
+SELECT c.Nombre, c.Descripcion
+FROM Curso c
+INNER JOIN Alumno_Curso ac ON (c.Cod_Curso = ac.Cod_Curso)
+WHERE ac.Anio = 2024
+GROUP BY c.Cod_Curso, c.Nombre, c.Descripcion
+HAVING COUNT(ac.DNI) = (
+    SELECT MIN(cantidad)
+    FROM (
+        SELECT COUNT(ac2.DNI) as cantidad
+        FROM Alumno_Curso ac2
+        WHERE ac2.Anio = 2024
+        GROUP BY ac2.Cod_Curso
+    ) AS subconsulta
+)
+
+
+8. Listar el DNI, Apellido, Nombre y Legajo de alumnos que realizaron cursos con nombre
+conteniendo el string ‘BD’ durante 2022 pero no realizaron ningún curso durante 2023.
+
+
+SELECT pe.DNI, pe.Nombre, pe.Apellido, a.Legajo
+FROM Alumno a
+INNER JOIN Persona pe on a.DNI = pe.DNI
+INNER JOIN Alumno_Curso ac on a.DNI = ac.DNI
+INNER JOIN Curso c on ac.Cod_Curso = c.Cod_Curso
+WHERE c.Nombre LIKE '%BD%' and ac.Anio = 2022
+
+EXCEPT
+
+SELECT pe.DNI, pe.Nombre, pe.Apellido, a.Legajo
+FROM Alumno a
+INNER JOIN Persona pe on a.DNI = pe.DNI
+INNER JOIN Alumno_Curso ac on a.DNI = ac.DNI
+INNER JOIN Curso c on ac.Cod_Curso = c.Cod_Curso
+WHERE c.Nombre LIKE '%BD%' and ac.Anio = 2023 
+
+
+9. Agregar un profesor con los datos que prefiera y agregarle el título con código: 25.
+
+
+-- 1. Primero insertar en Persona (tabla padre)
+INSERT INTO Persona (DNI, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
+VALUES (123, 'Gomez', 'Carlos', '1985-03-15', 'Soltero', 'm');
+
+-- 2. Luego insertar en Profesor (tabla hija)
+INSERT INTO Profesor (DNI, Matricula, Nro_Expediente)
+VALUES (123, '88', '7');
+
+-- 3. Finalmente agregar el título con código 25
+INSERT INTO Titulo_Profesor (Cod_Titulo, DNI, Fecha)
+VALUES (25, 123, '2025-11-10');
+
+
+10. Modificar el estado civil del alumno cuyo legajo es ‘2020/09’, el nuevo estado civil es divorciado.
+
+
+UPDATE Persona SET Estado_Civil='Divorciado' 
+WHERE DNI IN (SELECT a.DNI FROM Alumno a WHERE a.Legajo='2020/09')
+
+
+11. Dar de baja el alumno con DNI 30568989. Realizar todas las bajas necesarias para no dejar el
+conjunto de relaciones en un estado inconsistente.
+
+DELETE FROM Alumno_curso WHERE DNI=30568989;
+DELETE FROM alumno WHERE DNI=30568989;
+DELETE FROM persona WHERE DNI=30568989;
+
+
+
+

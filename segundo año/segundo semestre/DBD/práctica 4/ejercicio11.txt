@@ -1,0 +1,86 @@
+Box = (nroBox, m2, ubicación, capacidad, ocupacion) // ocupación es un numérico indicando cantidad
+de mascotas en el box actualmente, capacidad es una descripción.
+Mascota = (codMascota, nombre, edad, raza, peso, telefonoContacto)
+Veterinario = (matricula, CUIT, nombYAp, direccion, telefono)
+Supervision = (codMascota(fk), nroBox(fk), fechaEntra, fechaSale?, matricula(fk), descripcionEstadia)
+//fechaSale tiene valor null si la mascota está actualmente en el box
+
+
+1. Listar para cada veterinario cantidad de supervisiones realizadas con fecha de salida (fechaSale)
+durante enero de 2024. Indicar matrícula, CUIT, nombre y apellido, dirección, teléfono y cantidad
+de supervisiones.
+
+
+SELECT v.matricula, v.CUIT, v.nombYAp, v.direccion, v.telefono, COUNT(*)as cantidad_revisiones
+FROM Veterinario v
+INNER JOIN Supervision s ON v.matricula = s.matricula
+WHERE YEAR(s.fechaSale)=2024 AND MONTH(s.fechaSale)=1
+GROUP BY v.matricula, v.CUIT, v.nombYAp, v.direccion, v.telefono
+
+
+2. Listar CUIT, matrícula, nombre, apellido, dirección y teléfono de veterinarios que no tengan
+mascotas bajo supervisión actualmente.
+
+
+SELECT v.CUIT, v.matricula, v.nombYAp, v.direccion, v.telefono
+FROM Veterinario v
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Supervision s
+    WHERE s.matricula = v.matricula
+      AND s.fechaSale IS NULL
+);
+
+
+
+3. Listar nombre, edad, raza, peso y teléfono de contacto de mascotas que fueron atendidas por el
+veterinario ‘Oscar Lopez’. Ordenar por nombre y raza de manera ascendente.
+
+
+SELECT DISTINCT m.nombre,m.edad,m.raza,m.peso,m.telefonoContacto
+FROM Mascota m
+INNER JOIN Supervision s ON m.codMascota = s.codMascota
+INNER JOIN Veterinario v ON s.matricula = v.matricula
+WHERE v.nombYAp = 'Oscar Lopez'
+ORDER BY m.nombre, m.raza ASC
+
+
+
+4. Modificar el nombre y apellido al veterinario con matricula ‘MP 10000’, deberá llamarse: ‘Pablo
+Lopez’.
+
+
+UPDATE Veterinario 
+SET nombYAp='Pablo Lopez' 
+WHERE matricula='MP 10000';
+
+
+5. Listar nombre, edad, raza y peso de mascotas que tengan supervisiones con el veterinario con
+matricula ‘MP 1000’ y con el veterinario con matricula ‘MN 4545’.
+
+
+SELECT DISTINCT m.nombre,m.edad,m.raza,m.peso
+FROM Mascota m
+WHERE EXISTS (
+SELECT * 
+FROM Supervision s 
+WHERE m.codMascota = s.codMascota and s.matricula='MP 1000'
+)
+AND EXISTS (
+SELECT * 
+FROM Supervision s2 
+WHERE m.codMascota = s2.codMascota and s2.matricula='MP 4545'
+);
+
+
+
+6. Listar número de box, m2, ubicación, capacidad y nombre de mascota para supervisiones con
+fecha de entrada durante 2024.
+
+
+SELECT s.nroBox,b.m2,b.ubicacion,b.capacidad,m.nombre
+FROM Supervision s
+INNER JOIN Mascota m ON s.codMascota=m.codMascota
+INNER JOIN Box b ON s.nroBox=b.nroBox
+WHERE YEAR(s.fechaEntra)=2024
+

@@ -1,0 +1,164 @@
+Ejercicio 6
+Técnico = (codTec, nombre, especialidad) // técnicos
+Repuesto = (codRep, nombre, stock, precio) // repuestos
+RepuestoReparacion = (nroReparac (fk), codRep (fk), cantidad, precio) // repuestos utilizados en
+reparaciones.
+Reparación = (nroReparac, codTec (fk), precio_total, fecha) // reparaciones realizadas.
+
+
+1. Listar los repuestos, informando el nombre, stock y precio. Ordenar el resultado por precio.
+
+
+SELECT repuesto.nombre, repuesto.precio, repuesto.stock
+FROM Repuesto repuesto
+ORDER BY repuesto.precio
+
+
+
+2. Listar nombre, stock y precio de repuestos que se usaron en reparaciones durante 2023 y que no
+se usaron en reparaciones del técnico ‘José Gonzalez’.
+
+
+SELECT DISTINCT r.nombre, r.stock, r.precio
+FROM repuesto r 
+INNER JOIN repuestoreparacion repu ON (r.codRep = repu.codRep)
+INNER JOIN reparacion repa ON (repa.nroReparac = repu.nroReparac)
+WHERE YEAR(repa.fecha) = 2023
+EXCEPT
+SELECT r.nombre, r.stock, r.precio
+FROM repuesto r 
+INNER JOIN repuestoreparacion repu ON (r.codRep = repu.codRep)
+INNER JOIN reparacion repa ON (repa.nroReparac = repu.nroReparac)
+INNER JOIN tecnico t ON (t.codTec = repa.codTec)
+WHERE t.nombre = 'José Gonzalez'
+
+
+3. Listar el nombre y especialidad de técnicos que no participaron en ninguna reparación. Ordenar
+por nombre ascendentemente.
+
+SELECT t.nombre, t.especialidad
+FROM Tecnico t
+WHERE NOT EXISTS (
+  SELECT *
+  FROM Reparacion reparacion
+  where t.codTec = reparacion.codTec )
+ORDER BY t.nombre
+
+
+
+4. Listar el nombre y especialidad de los técnicos que solamente participaron en reparaciones
+durante 2022.
+
+
+SELECT t.nombre, t.especialidad
+FROM Tecnico t
+WHERE EXISTS (
+  SELECT * 
+  FROM Reparacion R1
+  WHERE t.codTec = R1.codTec AND YEAR (R1.fecha)=2022
+)
+AND NOT EXISTS (
+  SELECT * 
+  FROM Reparacion R1
+  WHERE t.codTec = R1.codTec AND YEAR (R1.fecha)<>2022
+)
+
+
+
+5. Listar para cada repuesto nombre, stock y cantidad de técnicos distintos que lo utilizaron. Si un
+repuesto no participó en alguna reparación igual debe aparecer en dicho listado.
+
+
+SELECT rep.nombre, rep.stock,
+       COUNT(DISTINCT repa.codTec) AS CantTecnicos
+FROM Repuesto rep
+LEFT JOIN RepuestoReparacion rr 
+       ON rep.codRep = rr.codRep
+LEFT JOIN Reparacion repa
+       ON rr.nroReparac = repa.nroReparac
+GROUP BY rep.codRep, rep.nombre, rep.stock;
+
+
+
+6. Listar nombre y especialidad del técnico con mayor cantidad de reparaciones realizadas y el
+técnico con menor cantidad de reparaciones.
+
+
+SELECT t.nombre, t.especialidad
+FROM Tecnico t
+LEFT JOIN Reparacion r ON t.codTec = r.codTec
+GROUP BY t.codTec, t.nombre, t.especialidad
+HAVING COUNT(r.nroReparac) >= ALL (
+        SELECT COUNT(*)
+        FROM Reparacion r1
+        GROUP BY r1.codTec
+    )
+    OR
+       COUNT(r.nroReparac) <= ALL (
+        SELECT COUNT(*)
+        FROM Reparacion r2
+        GROUP BY r2.codTec
+    );
+
+
+
+7. Listar nombre, stock y precio de todos los repuestos con stock mayor a 0 y que dicho repuesto
+no haya estado en reparaciones con un precio total superior a $10000.
+
+
+SELECT repuesto.nombre, repuesto.stock, repuesto.precio
+FROM Repuesto repuesto
+WHERE repuesto.stock > 0
+AND NOT EXISTS (
+  SELECT *
+  FROM RepuestoReparacion RR
+  INNER JOIN Reparacion reparacion ON RR.nroReparac = reparacion.nroReparac
+  WHERE repuesto.codRep = RR.codRep 
+    AND reparacion.precio_total > 10000
+);
+
+
+
+8. Proyectar número, fecha y precio total de aquellas reparaciones donde se utilizó algún repuesto
+con precio en el momento de la reparación mayor a $10000 y menor a $15000.
+
+
+SELECT DISTINCT rep.nroReparac, rep.precio_total, rep.fecha
+FROM Reparacion rep
+INNER JOIN RepuestoReparacion RR ON rep.nroReparac = RR.nroReparac
+WHERE RR.precio > 10000 AND RR.precio < 15000;
+
+
+
+9. Listar nombre, stock y precio de repuestos que hayan sido utilizados por todos los técnicos.
+
+
+SELECT r.nombre, r.stock, r.precio
+FROM Repuesto r
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Tecnico t
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM RepuestoReparacion rr
+        INNER JOIN Reparacion rep 
+            ON rr.nroReparac = rep.nroReparac
+        WHERE rr.codRep = r.codRep
+          AND rep.codTec = t.codTec
+    )
+);
+
+
+
+10. Listar fecha, técnico y precio total de aquellas reparaciones que necesitaron al menos 4
+repuestos distintos.
+
+
+SELECT rep.fecha, t.nombre AS tecnico, rep.precio_total
+FROM Reparacion rep
+INNER JOIN Tecnico t 
+    ON rep.codTec = t.codTec
+INNER JOIN RepuestoReparacion rr
+    ON rep.nroReparac = rr.nroReparac
+GROUP BY rep.nroReparac, rep.fecha, t.nombre, rep.precio_total
+HAVING COUNT(DISTINCT rr.codRep) >= 4;

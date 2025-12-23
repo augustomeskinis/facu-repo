@@ -2,7 +2,7 @@ package practica2.ejercicio6;
 
 import practica2.ejercicio2.BinaryTree;
 
-public class Transformacion {
+public class  Transformacion {
     private BinaryTree<Integer> ab;
 
     public Transformacion() {

@@ -1,0 +1,13 @@
+NOTAS CU
+
+1. en el diagrama
+			siempre dibujar los actores con cabeza negra
+			
+			un caso de uso siempre lo dispara 1 actor (osea solo 1 flecha le llega)
+			
+			cuando 2 o más casos de uso usa otro es uses, caso contrario extends (recordar el orden de la flechita)
+
+			recordar que puede haber herencia
+
+2 - cuando en la precondición se usa el "se debe haber ejecutado x caso de uso" es porque ese caso de uso lo usó ese mismo actor.
+
