@@ -1,0 +1,103 @@
+<mxfile host="Electron">
+  <diagram name="Página-1" id="iAOR6FOaygmYR2B6eTLx">
+    <mxGraphModel dx="1138" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0MNIew-JVVYITfWY5cVg-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Mensajero (Context)" vertex="1">
+          <mxGeometry height="100" width="160" x="190" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-3" parent="0MNIew-JVVYITfWY5cVg-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="160" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-4" parent="0MNIew-JVVYITfWY5cVg-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+enviar(mensaje:String)&lt;div&gt;+recibir(mensaje:String)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="66" width="160" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Cifrado (strategy)" vertex="1">
+          <mxGeometry height="110" width="170" x="510" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-7" parent="0MNIew-JVVYITfWY5cVg-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-8" parent="0MNIew-JVVYITfWY5cVg-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ encriptar (mensaje: String)&lt;br&gt;+ desenciptar (mensaje: String)" vertex="1">
+          <mxGeometry height="76" width="170" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-9" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Patrón Strategy&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="80" x="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-10" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="350" y="150" as="sourcePoint" />
+            <mxPoint x="510" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-14" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="FiestelCipher (adaptee)" vertex="1">
+          <mxGeometry height="130" width="220" x="250" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-15" parent="0MNIew-JVVYITfWY5cVg-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="-key:String" vertex="1">
+          <mxGeometry height="26" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-16" parent="0MNIew-JVVYITfWY5cVg-14" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-17" parent="0MNIew-JVVYITfWY5cVg-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ &amp;lt;&amp;lt;create&amp;gt;&amp;gt; FeistelCipher (key:String)&lt;div&gt;+String encode (message:String)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="220" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="RC4 (adaptee)" vertex="1">
+          <mxGeometry height="140" width="237" x="590" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-21" parent="0MNIew-JVVYITfWY5cVg-19" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="237" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-22" parent="0MNIew-JVVYITfWY5cVg-19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+String encrpyt (String message, String key)&lt;div&gt;+String decript (String mensajeCifrado, String key)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="106" width="237" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-25" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="FiestelCipherAdapter (adapter)" vertex="1">
+          <mxGeometry height="100" width="230" x="250" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-27" parent="0MNIew-JVVYITfWY5cVg-25" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="230" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-28" parent="0MNIew-JVVYITfWY5cVg-25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ encriptar (mensaje: String)&lt;br&gt;+ desenciptar (mensaje: String)" vertex="1">
+          <mxGeometry height="66" width="230" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-29" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="RC4Adapter (adapter)" vertex="1">
+          <mxGeometry height="100" width="210" x="600" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-30" parent="0MNIew-JVVYITfWY5cVg-29" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="-key:String" vertex="1">
+          <mxGeometry height="26" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-31" parent="0MNIew-JVVYITfWY5cVg-29" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="210" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-32" parent="0MNIew-JVVYITfWY5cVg-29" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ encriptar (mensaje: String)&lt;br&gt;+ desenciptar (mensaje: String)" vertex="1">
+          <mxGeometry height="40" width="210" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-34" edge="1" parent="1" source="0MNIew-JVVYITfWY5cVg-29" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.53;entryY=1.051;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="0MNIew-JVVYITfWY5cVg-8" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="530" y="270" as="sourcePoint" />
+            <mxPoint x="690" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-35" edge="1" parent="1" source="0MNIew-JVVYITfWY5cVg-28" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.444;exitY=1.039;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.467;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="0MNIew-JVVYITfWY5cVg-14" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="250" y="490" as="sourcePoint" />
+            <mxPoint x="410" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-36" edge="1" parent="1" source="0MNIew-JVVYITfWY5cVg-25" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.147;entryY=1.063;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.876;exitY=-0.012;exitDx=0;exitDy=0;exitPerimeter=0;" target="0MNIew-JVVYITfWY5cVg-8" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="340" y="260" as="sourcePoint" />
+            <mxPoint x="500" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0MNIew-JVVYITfWY5cVg-37" edge="1" parent="1" source="0MNIew-JVVYITfWY5cVg-32" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.286;exitY=1.123;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.304;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="0MNIew-JVVYITfWY5cVg-19" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="500" y="500" as="sourcePoint" />
+            <mxPoint x="660" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,7 @@
+2) Un refactoring por definición no cambia el comportamiento observable. Y acá hay un cambio que no es refactoring: se agregó NotificacionPodcast, una clase con funcionalidad nueva que no existía en el original. Eso es agregado de funcionalidad, no refactoring.
+Entonces la respuesta es: no todas. La conversión a polimorfismo sí es refactoring (mismo comportamiento para VIDEO y MUSICA), pero la incorporación de Podcast es funcionalidad nueva. Vale la pena decirlo explícito porque esa es justamente la trampa de la pregunta.
+3) los code smells son "switch statments" y "duplicated code" (pero este último no se refactorizo en el código modificado).
+4) para el code smell switch statements se solucionó con el refactoring replace conditional with polimorfism. Notificación se hizo abstracta, 
+y se crearon 3 nuevas clases (que heredan de notificación) que vendrían a reemplazar al parametro "tipo".
+nota: para el refactoring "duplicated code" se podría haber hecho el refactoring form template method.
+

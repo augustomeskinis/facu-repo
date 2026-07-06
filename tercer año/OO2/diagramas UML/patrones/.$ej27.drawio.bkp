@@ -1,0 +1,79 @@
+<mxfile host="Electron">
+  <diagram name="Página-1" id="2o89ck2f7YTHiy72828R">
+    <mxGraphModel dx="1182" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PaqueteViaje" vertex="1">
+          <mxGeometry height="140" width="170" x="340" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-2" parent="QOeq-KAYJ8_5SUP50nAD-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="-precioBase:Real" vertex="1">
+          <mxGeometry height="26" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-3" parent="QOeq-KAYJ8_5SUP50nAD-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+confirmar()&lt;div&gt;+cancelar()&lt;/div&gt;&lt;div&gt;+setEstrategia()&lt;/div&gt;&lt;div&gt;+calcularPrecio():real&lt;/div&gt;&lt;div&gt;+generarResumen():String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="88" width="170" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-5" parent="1" style="html=1;whiteSpace=wrap;align=center;" value="«interface»&lt;br&gt;&lt;b&gt;State&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+confirmar()&lt;/span&gt;&lt;div&gt;&lt;div style=&quot;&quot;&gt;+cancelar()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setEstrategia()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+calcularPrecio():real&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="140" x="160" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-6" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlataformaPago" vertex="1">
+          <mxGeometry height="60" width="180" x="640" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-8" parent="QOeq-KAYJ8_5SUP50nAD-6" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-9" parent="QOeq-KAYJ8_5SUP50nAD-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+pagar(monto:Real):boolean" vertex="1">
+          <mxGeometry height="26" width="180" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-10" edge="1" parent="1" source="QOeq-KAYJ8_5SUP50nAD-3" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1.023;exitY=0.795;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="QOeq-KAYJ8_5SUP50nAD-6" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="410" y="470" as="sourcePoint" />
+            <mxPoint x="570" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-12" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="350" y="420" as="sourcePoint" />
+            <mxPoint x="290" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-13" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Cancelado (ConcreteState)" vertex="1">
+          <mxGeometry height="100" width="140" x="60" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-14" parent="QOeq-KAYJ8_5SUP50nAD-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center; background-color: transparent;&quot;&gt;+confirmar()&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+cancelar()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+setEstrategia()&lt;/span&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;div&gt;+calcularPrecio():real&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="74" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-17" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Confirmado (ConcreteState)" vertex="1">
+          <mxGeometry height="100" width="140" x="250" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-18" parent="QOeq-KAYJ8_5SUP50nAD-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center; background-color: transparent;&quot;&gt;+confirmar()&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+cancelar()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+setEstrategia()&lt;/span&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;div&gt;+calcularPrecio():real&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="74" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-19" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Pendiente (ConcreteState)" vertex="1">
+          <mxGeometry height="100" width="140" x="440" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-20" parent="QOeq-KAYJ8_5SUP50nAD-19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center; background-color: transparent;&quot;&gt;+confirmar()&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+cancelar()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: center; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+setEstrategia()&lt;/span&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;div&gt;+calcularPrecio():real&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="74" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-22" edge="1" parent="1" source="QOeq-KAYJ8_5SUP50nAD-13" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.686;exitY=0.048;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="140" y="700" as="sourcePoint" />
+            <mxPoint x="210" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-23" edge="1" parent="1" source="QOeq-KAYJ8_5SUP50nAD-17" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="270" y="700" as="sourcePoint" />
+            <mxPoint x="250" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QOeq-KAYJ8_5SUP50nAD-24" edge="1" parent="1" source="QOeq-KAYJ8_5SUP50nAD-19" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="330" y="680" as="sourcePoint" />
+            <mxPoint x="310" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,23 @@
+centro de kineseología llamado rehablilitar. se basa en clases de 3 tipos: tren superior, tren medio, tren inferior. el centro tiene distintas salas.
+
+ROLES: ABONADOS, NO ABONADOS, PROFESORES, RECEPCIONISTAS, ADMINISTRATIVOS.
+
+REGISTRO: clientes y profesores: email, teléfono de contacto, nombre y apellido, fecha nacimiento (18+), apto físico (el administrador puede rechazarlo).
+
+CLIENTES:
+todos los clientes tienen que estar registrados. los clientes pueden ser abonados o no abonados. los abonados pagan una suscripción mensual. los no abonados cuando quieren reservar una clase deben pagar una seña del 50% (como mínimo). si quiere, puede pagar toda la clase. el administrador puede ver cuánto devolverle.
+
+POLÍTICA DE CANCELACIÓN: 
+	los abonados pueden cancelar cuando quieran. si cancelan 48 horas antes se les genera un crédito. si cancelan entre 48 y 24 horas antes se les hace un descuento del 40% para el mes siguiente. si vuelven a cancelar con las mismas condiciones, se les da un descuento del 30%. otra vez más y pierde todo el beneficio.	
+	los no abonados si cancelan 24 horas antes se les devuelve la seña.
+
+
+FUNCIONALIDADES ADMINISTRADOR: agregar usuario, eliminar usuario, suspender usuario, ver pagos usuario, crear clases, elegir capacidad sala.
+
+MÉTRICAS DEL ADMINISTRADOR: en un rango de fechas (desde - hasta) ver cuántas personas nuevas se registraron, ver cuantas hay suspendidas, horario más elegido, ver ganancias, etc.
+	      
+PAGO: se paga con mercado pago. (no se si solo la seña o el 100%)
+
+NOTIFICACIONES: 
+
+DETALLES: el sitio debe tener un teléfono de contacto, el sitio se llama rehabilitar, asistencia se mide con qr.
